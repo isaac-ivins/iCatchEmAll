@@ -1,9 +1,9 @@
 export type NavigationParamList = {
-    RootStackNavigator: undefined;
-}
+  RootStackNavigator: undefined;
+};
 
 export enum NavigationScreens {
-    RootStackNavigator = 'RootStackNavigator'
+  RootStackNavigator = 'RootStackNavigator',
 }
 
 export type RootParamList = {

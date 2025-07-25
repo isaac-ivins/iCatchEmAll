@@ -10,7 +10,7 @@ const RootStackNavigator = () => {
       <RootNavigationStack.Screen
         name={RootParamScreens.UnauthenticatedStackNavigator}
         component={UnauthenticatedStackNavigator}
-       />
+      />
     </RootNavigationStack.Navigator>
   );
 };

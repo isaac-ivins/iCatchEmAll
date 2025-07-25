@@ -20,7 +20,7 @@ export default [
       },
       globals: {
         console: 'readonly',
-      }
+      },
     },
     plugins: { '@typescript-eslint': tseslint },
     rules: {

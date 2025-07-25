@@ -1,20 +1,20 @@
 {
-    "baselineWidth": 375,
-    "baselineHeight": 812,
-    "iconValues": {
-        "small": 10,
-        "medium": 20,
-        "large": 30
-    },
-    "values": {
-        "xxxSmall": 2,
-        "xxSmall": 4,
-        "xSmall": 8,
-        "small": 16,
-        "medium": 24,
-        "large": 32,
-        "xLarge": 48,
-        "xxLarge": 56,
-        "xxxLarge": 80
-    }
+  "baselineWidth": 375,
+  "baselineHeight": 812,
+  "iconValues": {
+    "small": 10,
+    "medium": 20,
+    "large": 30
+  },
+  "values": {
+    "xxxSmall": 2,
+    "xxSmall": 4,
+    "xSmall": 8,
+    "small": 16,
+    "medium": 24,
+    "large": 32,
+    "xLarge": 48,
+    "xxLarge": 56,
+    "xxxLarge": 80
+  }
 }

@@ -1,25 +1,31 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { ExtendedTheme, useTheme } from '@react-navigation/native';
 
 const WelcomeScreen: FC = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.font}>Welcome Screen</Text>
-        </View>
-    )
-}
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  return (
+    <View style={styles.container}>
+      <Text style={styles.font}>Welcome Screen</Text>
+    </View>
+  );
+};
 
 export default WelcomeScreen;
 
-const styles = StyleSheet.create({
+const createStyles = ({ layout }: ExtendedTheme) => {
+  return StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     font: {
-        color: 'black',
-        fontSize: 40,
-    }
-});
+      color: 'black',
+      fontSize: 40,
+      marginVertical: layout.scaledY.medium,
+    },
+  });
+};

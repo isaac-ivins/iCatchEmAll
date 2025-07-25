@@ -9,12 +9,14 @@ const NavigationStack = createNativeStackNavigator<NavigationParamList>();
 const Navigation: FC = () => {
   return (
     <NavigationContainer>
-        <NavigationStack.Navigator>
-          <NavigationStack.Screen
+      <NavigationStack.Navigator
+        initialRouteName={NavigationScreens.RootStackNavigator}
+      >
+        <NavigationStack.Screen
           name={NavigationScreens.RootStackNavigator}
           component={RootStackNavigator}
         />
-        </NavigationStack.Navigator>
+      </NavigationStack.Navigator>
     </NavigationContainer>
   );
 };
