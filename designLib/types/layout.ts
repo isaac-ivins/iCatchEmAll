@@ -10,22 +10,24 @@ export type LayoutThemeType = {
   };
 };
 
-type ValueText =
+export type ValueText =
   | string
+  | 'xxxSmall'
   | 'xxSmall'
   | 'xSmall'
   | 'small'
   | 'medium'
   | 'large'
   | 'xLarge'
-  | 'xxLarge';
+  | 'xxLarge'
+  | 'xxxLarge';
 
-type IconText = string | 'small' | 'medium' | 'large';
+export type IconText = string | 'small' | 'medium' | 'large';
 
-type ValuesHash = {
+export type ValuesHash = {
   [key in ValueText]: number;
 };
 
-type IconHash = {
+export type IconHash = {
   [key in IconText]: number;
 };

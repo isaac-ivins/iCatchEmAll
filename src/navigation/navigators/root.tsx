@@ -1,14 +1,17 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UnauthenticatedStackNavigator from '@navigation/navigators/unauthenticated';
-import { RootParamList } from 'types/nav';
+import { RootParamList, RootParamScreens } from 'types/nav';
 
-const Stack = createNativeStackNavigator<RootParamList>();
+const RootNavigationStack = createNativeStackNavigator<RootParamList>();
 
 const RootStack = () => {
   return (
-    <Stack.Navigator>
-      <UnauthenticatedStackNavigator />
-    </Stack.Navigator>
+    <RootNavigationStack.Navigator>
+      <RootNavigationStack.Screen
+        name={RootParamScreens.UnauthenticatedStackNavigator}
+        component={UnauthenticatedStackNavigator}
+       />
+    </RootNavigationStack.Navigator>
   );
 };
 

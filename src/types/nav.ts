@@ -1,8 +1,18 @@
+export type NavigationParamList = {
+    RootStackNavigator: undefined;
+}
+
+export enum NavigationScreens {
+    RootStackNavigator = 'RootStackNavigator'
+}
+
 export type RootParamList = {
   UnauthenticatedStackNavigator: undefined;
+  AuthenticatedStackNavigator: undefined;
+  OnboardingStackNavigator: undefined;
 };
 
-export enum RootParamNavigators {
+export enum RootParamScreens {
   UnauthenticatedStackNavigator = 'UnauthenticatedStackNavigator',
 }
 
