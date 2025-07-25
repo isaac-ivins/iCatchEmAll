@@ -1,0 +1,38 @@
+{
+  "colors": {
+    "primary": {
+      "light": "#f8fafb",
+      "regular": "#f1f5f7",
+      "heavy": "#9db9c7"
+    },
+    "secondary": {
+      "light": "#f0f9ff",
+      "regular": "#e0f2fe",
+      "heavy": "#0ea5e9"
+    },
+    "alternative": {
+      "light": "#f8fafc",
+      "regular": "#f1f5f9",
+      "heavy": "#64748b"
+    },
+    "foreground": {
+      "light": "#fefaf5",
+      "regular": "#fef5eb",
+      "heavy": "#f7a619"
+    },
+    "background": {
+      "pirmary": "#ffffff",
+      "secondary": "#000000"
+    },
+    "semantic": {
+      "success": "#10b981",
+      "warning": "#f59e0b",
+      "error": "#ef4444",
+      "info": "#3b82f6"
+    },
+    "typography": {
+      "pirmary": "#ffffff",
+      "secondary": "#000000"
+    }
+  }
+}

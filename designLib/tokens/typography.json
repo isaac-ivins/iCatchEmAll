@@ -1,0 +1,31 @@
+{
+  "typography": {
+    "fontFamily": {
+      "primary": ["Georgia", "serif"],
+      "secondary": ["Source Sans Pro", "sans-serif"]
+    },
+    "fontSize": {
+      "xSmall": 10,
+      "small": 14,
+      "medium": 18,
+      "large": 24,
+      "xLarge": 30,
+      "xxLarge": 48
+    },
+    "fontWeight": {
+      "small": 200,
+      "medium": 500,
+      "large": 800
+    },
+    "lineHeight": {
+      "small": 1,
+      "medium": 1.5,
+      "large": 2
+    },
+    "letterSpacing": {
+      "small": "-0.025em",
+      "medium": "0em",
+      "large": "0.025em"
+    }
+  }
+}
