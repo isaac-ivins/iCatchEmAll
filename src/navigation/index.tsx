@@ -1,19 +1,20 @@
 import { FC } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import UnauthenticatedStackNavigator from '@navigation/navigators/unauthenticated';
+import RootStackNavigator from '@navigation/navigators/root';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationParamList, NavigationScreens } from 'types/nav';
-import { CustomTheme } from 'contsants/theme';
 
 const NavigationStack = createNativeStackNavigator<NavigationParamList>();
 
 const Navigation: FC = () => {
   return (
-    <NavigationContainer theme={CustomTheme}>
-      <NavigationStack.Screen
-        name={NavigationScreens.RootStackNavigator}
-        component={UnauthenticatedStackNavigator}
-       />
+    <NavigationContainer>
+        <NavigationStack.Navigator>
+          <NavigationStack.Screen
+          name={NavigationScreens.RootStackNavigator}
+          component={RootStackNavigator}
+        />
+        </NavigationStack.Navigator>
     </NavigationContainer>
   );
 };

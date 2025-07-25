@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const WelcomeScreen = () => {
+const WelcomeScreen: FC = () => {
     return (
         <View style={styles.container}>
-            <Text>Welcome Screen</Text>
+            <Text style={styles.font}>Welcome Screen</Text>
         </View>
     )
 }
@@ -16,6 +17,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 42
     },
+    font: {
+        color: 'black',
+        fontSize: 40,
+    }
 });

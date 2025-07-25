@@ -4,7 +4,7 @@ import { RootParamList, RootParamScreens } from 'types/nav';
 
 const RootNavigationStack = createNativeStackNavigator<RootParamList>();
 
-const RootStack = () => {
+const RootStackNavigator = () => {
   return (
     <RootNavigationStack.Navigator>
       <RootNavigationStack.Screen
@@ -15,4 +15,4 @@ const RootStack = () => {
   );
 };
 
-export default RootStack;
+export default RootStackNavigator;
