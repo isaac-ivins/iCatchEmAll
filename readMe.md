@@ -8,7 +8,7 @@ The application should run locally on the iOS Simulator and the Android Emulator
 
 - iOS on Mac
 
- -Android on Mac
+  -Android on Mac
 
 Include the setup details necessary to run the application locally on either platform.
 

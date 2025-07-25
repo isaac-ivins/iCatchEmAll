@@ -15,7 +15,7 @@ export default [
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: {
-          jsx: true
+          jsx: true,
         },
       },
     },
@@ -35,4 +35,4 @@ export default [
     },
   },
   prettier,
-]; 
+];

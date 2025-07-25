@@ -1,23 +1,31 @@
 export type LayoutThemeType = {
-    scale: (size: number) => number;
-    verticalScale: (size: number) => number;
-    scaledX: ValuesHash;
-    scaledY: ValuesHash;
-    icon: IconHash;
-    window: {
-        width: number;
-        height: number;
-    };
-}
+  scale: (size: number) => number;
+  verticalScale: (size: number) => number;
+  scaledX: ValuesHash;
+  scaledY: ValuesHash;
+  icon: IconHash;
+  window: {
+    width: number;
+    height: number;
+  };
+};
 
-type ValueText = string | 'xxSmall' | 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'xxLarge'
+type ValueText =
+  | string
+  | 'xxSmall'
+  | 'xSmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xLarge'
+  | 'xxLarge';
 
-type IconText = string | 'small' | 'medium' | 'large'
+type IconText = string | 'small' | 'medium' | 'large';
 
 type ValuesHash = {
-    [key in ValueText]: number;
-}
+  [key in ValueText]: number;
+};
 
 type IconHash = {
-    [key in IconText]: number;
-}
+  [key in IconText]: number;
+};

@@ -1,10 +1,8 @@
-import { FC } from 'react'
+import { FC } from 'react';
 import Navigation from '@navigation/index';
 
 const App: FC = () => {
-  return (
-    <Navigation />
-  );
-}
+  return <Navigation />;
+};
 
 export default App;

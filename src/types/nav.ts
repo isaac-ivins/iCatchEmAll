@@ -1,15 +1,15 @@
 export type RootParamList = {
-    UnauthenticatedStackNavigator: undefined;
-}
+  UnauthenticatedStackNavigator: undefined;
+};
 
 export enum RootParamNavigators {
-    UnauthenticatedStackNavigator = 'UnauthenticatedStackNavigator'
+  UnauthenticatedStackNavigator = 'UnauthenticatedStackNavigator',
 }
 
 export type UnauthenticatedParamList = {
-    WelcomeScreen: undefined;
-  };
-  
+  WelcomeScreen: undefined;
+};
+
 export enum UnauthenticatedScreens {
-    WelcomeScreen = 'WelcomeScreen'
+  WelcomeScreen = 'WelcomeScreen',
 }

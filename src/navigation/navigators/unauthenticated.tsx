@@ -5,11 +5,14 @@ import { UnauthenticatedParamList, UnauthenticatedScreens } from 'types/nav';
 const Stack = createNativeStackNavigator<UnauthenticatedParamList>();
 
 const UnauthenticatedStackNavigator = () => {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen name={UnauthenticatedScreens.WelcomeScreen} component={WelcomeScreen} />
-      </Stack.Navigator>
-    );
-  }
-  
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={UnauthenticatedScreens.WelcomeScreen}
+        component={WelcomeScreen}
+      />
+    </Stack.Navigator>
+  );
+};
+
 export default UnauthenticatedStackNavigator;

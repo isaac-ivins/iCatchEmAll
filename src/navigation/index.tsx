@@ -8,6 +8,6 @@ const Navigation: FC = () => {
       <RootStack />
     </NavigationContainer>
   );
-}
+};
 
 export default Navigation;
