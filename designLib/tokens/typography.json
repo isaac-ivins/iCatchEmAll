@@ -13,9 +13,9 @@
       "xxLarge": 48
     },
     "fontWeight": {
-      "small": 200,
-      "medium": 500,
-      "large": 800
+      "small": "200",
+      "medium": "500",
+      "large": "800"
     },
     "lineHeight": {
       "small": 1,
@@ -26,6 +26,46 @@
       "small": "-0.025em",
       "medium": "0em",
       "large": "0.025em"
+    },
+    "headings": {
+      "h1": {
+        "fontFamily": "Georgia",
+        "fontSize": "xLarge",
+        "fontWeight": "medium",
+        "lineHeight": "large",
+        "letterSpacing": "large",
+        "color": "text"
+      },
+      "h2": {
+        "fontFamily": "Georgia",
+        "fontSize": "large",
+        "fontWeight": "medium",
+        "lineHeight": "medium",
+        "letterSpacing": "medium"
+      },
+      "h3": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "medium",
+        "fontWeight": "small",
+        "lineHeight": "medium",
+        "letterSpacing": "medium"
+      }
+    },
+    "paragraphs": {
+      "p1": {
+        "fontFamily": "serif",
+        "fontSize": "small",
+        "fontWeight": "medium",
+        "lineHeight": "medium",
+        "letterSpacing": "medium"
+      },
+      "p2": {
+        "fontFamily": "sans-serif",
+        "fontSize": "small",
+        "fontWeight": "medium",
+        "lineHeight": "medium",
+        "letterSpacing": "medium"
+      }
     }
   }
 }

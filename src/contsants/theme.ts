@@ -1,20 +1,14 @@
 import { Dimensions } from 'react-native';
-import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import getLayoutFromClientViewportDeminsions from '../../designLib/tools/layoutTokenTransformer';
-import { LayoutThemeType } from '../../designLib/types/layout';
+import { CustomThemeType } from '../../designLib/types/theme';
+import lightThemeColors from '../../designLib/tokens/light.json';
+import themeFonts from '../../designLib/tokens/light.json';
 
 const { width, height } = Dimensions.get('window');
 
-export interface CustomThemeType {
-  dark: boolean;
-  colors: unknown;
-  fonts: unknown;
-  layout: LayoutThemeType;
-}
-
-// export const CustomTheme: CustomThemeType =  {
-export const CustomTheme = {
-  ...DefaultTheme,
-  ...DarkTheme,
+export const CustomTheme: CustomThemeType = {
+  dark: false,
+  colors: lightThemeColors,
+  fonts: themeFonts,
   layout: getLayoutFromClientViewportDeminsions(width, height),
 };
