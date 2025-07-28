@@ -24,35 +24,37 @@
         "large": 2
       }
     },
-    "h1": {
-      "fontFamily": "primary",
-      "fontSize": "xLarge",
-      "fontWeight": "medium",
-      "lineHeight": "large"
-    },
-    "h2": {
-      "fontFamily": "primary",
-      "fontSize": "large",
-      "fontWeight": "medium",
-      "lineHeight": "medium"
-    },
-    "h3": {
-      "fontFamily": "secondary",
-      "fontSize": "medium",
-      "fontWeight": "small",
-      "lineHeight": "medium"
-    },
-    "p1": {
-      "fontFamily": "secondary",
-      "fontSize": "small",
-      "fontWeight": "medium",
-      "lineHeight": "medium"
-    },
-    "p2": {
-      "fontFamily": "secondary",
-      "fontSize": "small",
-      "fontWeight": "medium",
-      "lineHeight": "medium"
+    "presets": {
+      "h1": {
+        "fontFamily": "primary",
+        "fontSize": "xLarge",
+        "fontWeight": "medium",
+        "lineHeight": "large"
+      },
+      "h2": {
+        "fontFamily": "primary",
+        "fontSize": "large",
+        "fontWeight": "medium",
+        "lineHeight": "medium"
+      },
+      "h3": {
+        "fontFamily": "secondary",
+        "fontSize": "medium",
+        "fontWeight": "small",
+        "lineHeight": "medium"
+      },
+      "p1": {
+        "fontFamily": "secondary",
+        "fontSize": "small",
+        "fontWeight": "medium",
+        "lineHeight": "medium"
+      },
+      "p2": {
+        "fontFamily": "secondary",
+        "fontSize": "small",
+        "fontWeight": "medium",
+        "lineHeight": "medium"
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ const NavigationStack = createNativeStackNavigator<NavigationParamList>();
 
 const Navigation: FC = () => {
   // impliment dark mode with theme toggle
+  console.log('LightTheme: ', LightTheme);
   return (
     <NavigationContainer theme={LightTheme}>
       <NavigationStack.Navigator
