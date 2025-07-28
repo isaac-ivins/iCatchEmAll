@@ -16,7 +16,9 @@ const PokemonDetailsModal: FC = () => {
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Captured Pokemon Screen</RNText>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
+        Captured Pokemon Screen
+      </RNText>
       {/* display more info */}
       {/* "Catch" CTA -> adds to caught pokemon */}
     </View>

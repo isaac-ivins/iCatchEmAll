@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import {
-    AuthenticatedStackNavigatorScreens,
-    AuthenticatedStackNavigatorParamList,
-    AuthenticatedBottomTabNavigatorParamList,
-    AuthenticatedBottomTabNavigatorScreens
+  AuthenticatedStackNavigatorScreens,
+  AuthenticatedStackNavigatorParamList,
+  AuthenticatedBottomTabNavigatorParamList,
+  AuthenticatedBottomTabNavigatorScreens,
 } from 'types/nav';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PokedexScreen from '@screens/authenticated/pokeDex';
@@ -12,8 +12,10 @@ import TrainerDetailsScreen from '@screens/authenticated/trainerDetails';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import PokemonDetailsModal from '@screens/authenticated/pokemonDetails';
 
-const AuthenticatedBottomTabs = createBottomTabNavigator<AuthenticatedBottomTabNavigatorParamList>();
-const AuthenticatedNavigationStack = createNativeStackNavigator<AuthenticatedStackNavigatorParamList>();
+const AuthenticatedBottomTabs =
+  createBottomTabNavigator<AuthenticatedBottomTabNavigatorParamList>();
+const AuthenticatedNavigationStack =
+  createNativeStackNavigator<AuthenticatedStackNavigatorParamList>();
 
 const AuthenticatedBottomTabNavigator: FC = () => {
   return (
@@ -38,20 +40,22 @@ const AuthenticatedBottomTabNavigator: FC = () => {
 };
 
 const AuthenticatedStackNavigator: FC = () => {
-    return (
-        <AuthenticatedNavigationStack.Navigator>
-            <AuthenticatedNavigationStack.Screen
-                name={AuthenticatedStackNavigatorScreens.AuthenticatedBottomTabNavigator}
-                component={AuthenticatedBottomTabNavigator}
-                options={{ headerShown: false }}
-            />
-            <AuthenticatedNavigationStack.Screen
-                name={AuthenticatedStackNavigatorScreens.PokemonDetailsModal}
-                component={PokemonDetailsModal}
-                options={{ presentation: 'modal' }}
-            />
-        </AuthenticatedNavigationStack.Navigator>
-    )
-}
+  return (
+    <AuthenticatedNavigationStack.Navigator>
+      <AuthenticatedNavigationStack.Screen
+        name={
+          AuthenticatedStackNavigatorScreens.AuthenticatedBottomTabNavigator
+        }
+        component={AuthenticatedBottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <AuthenticatedNavigationStack.Screen
+        name={AuthenticatedStackNavigatorScreens.PokemonDetailsModal}
+        component={PokemonDetailsModal}
+        options={{ presentation: 'modal' }}
+      />
+    </AuthenticatedNavigationStack.Navigator>
+  );
+};
 
 export default AuthenticatedStackNavigator;

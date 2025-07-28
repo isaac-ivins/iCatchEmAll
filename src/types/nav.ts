@@ -35,7 +35,7 @@ export enum UnauthenticatedScreens {
 export type OnboardingParamList = {
   CreateTrainerNameScreen: undefined;
   ChooseTrainerRegionScreen: undefined;
-}
+};
 
 export enum OnboardingScreens {
   CreateTrainerNameScreen = 'CreateTrainerNameScreen',
@@ -45,12 +45,12 @@ export enum OnboardingScreens {
 // --------------------------------------------
 
 export type AuthenticatedStackNavigatorParamList = {
-  AuthenticatedStackNavigator: undefined;
+  AuthenticatedBottomTabNavigator: undefined;
   PokemonDetailsModal: undefined;
 };
 
 export enum AuthenticatedStackNavigatorScreens {
-  AuthenticatedStackNavigator = 'AuthenticatedStackNavigator',
+  AuthenticatedBottomTabNavigator = 'AuthenticatedBottomTabNavigator',
   PokemonDetailsModal = 'PokemonDetailsModal',
 }
 
@@ -58,7 +58,7 @@ export type AuthenticatedBottomTabNavigatorParamList = {
   TrainerDetailsScreen: undefined;
   PokedexScreen: undefined;
   CapturedPokemonScreen: undefined;
-}
+};
 
 export enum AuthenticatedBottomTabNavigatorScreens {
   TrainerDetailsScreen = 'TrainerDetailsScreen',

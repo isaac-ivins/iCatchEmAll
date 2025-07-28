@@ -18,7 +18,9 @@ const ChooseTrainerRegionScreen: FC = () => {
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Choose Region Screen</RNText>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
+        Choose Region Screen
+      </RNText>
       {/* // select from region list */}
       {/* button that links to AuthStackNav */}
     </View>

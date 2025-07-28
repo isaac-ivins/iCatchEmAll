@@ -14,7 +14,9 @@ const WelcomeScreen: FC = () => {
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Welcome Screen</RNText>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
+        Welcome Screen
+      </RNText>
       {/* button that links to OnboardingStackNavigator */}
       {/* list of existing trainers */}
     </View>

@@ -15,7 +15,9 @@ const CapturedPokemonScreen: FC = () => {
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Captured Pokemon Screen</RNText>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
+        Captured Pokemon Screen
+      </RNText>
       {/* show total # pokemon caught */}
       {/* list of capture pokemon */}
       {/* // "release" CTA */}

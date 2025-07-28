@@ -14,7 +14,9 @@ const CreateTrainerNameScreen: FC = () => {
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Create Trainer Screen</RNText>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
+        Create Trainer Screen
+      </RNText>
       {/* // input to collect Trainer Name */}
       {/* button that links to ChooseRegionScreen */}
     </View>

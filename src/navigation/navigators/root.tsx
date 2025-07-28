@@ -3,7 +3,7 @@ import { RootParamList, RootParamScreens } from 'types/nav';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UnauthenticatedStackNavigator from '@navigation/navigators/unauthenticated';
 import OnboardingStackNavigator from '@navigation/navigators/onboarding';
-import AuthenticatedNavigationStack from '@navigation/navigators/authenticated'
+import AuthenticatedNavigationStack from '@navigation/navigators/authenticated';
 
 const RootNavigationStack = createNativeStackNavigator<RootParamList>();
 

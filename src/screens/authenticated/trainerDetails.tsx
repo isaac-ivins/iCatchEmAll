@@ -13,7 +13,9 @@ const TrainerDetailsScreen: FC = () => {
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Trainer Details Screen</RNText>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
+        Trainer Details Screen
+      </RNText>
       {/* // show name */}
       {/* // show selected region */}
       {/* // show total pokemon caugh # */}
