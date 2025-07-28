@@ -8,6 +8,7 @@ const UnauthenticatedNavigationStack =
 const UnauthenticatedStackNavigator = () => {
   return (
     <UnauthenticatedNavigationStack.Navigator
+      screenOptions={{ headerShown: false }}
       initialRouteName={UnauthenticatedScreens.WelcomeScreen}
     >
       <UnauthenticatedNavigationStack.Screen

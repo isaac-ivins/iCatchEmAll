@@ -4,26 +4,27 @@ import { ExtendedTheme, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 
-// Close Details Modal with X
-const PokemonDetailsModal: FC = () => {
+// Open Details Modal with CTA on Pokemon Tile
+const CapturedPokemonScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
-  // query for more pokemon details
-  // display more info
+  // display list of captured pokemon with "release" option
 
-  // run catch - add-to caught pokemon list
+  // run Release - remove from captured list of trainer
 
   return (
     <View style={styles.container}>
       <RNText type={RNTextEnum.h1} customStyles={styles.font}>Captured Pokemon Screen</RNText>
-      {/* display more info */}
-      {/* "Catch" CTA -> adds to caught pokemon */}
+      {/* show total # pokemon caught */}
+      {/* list of capture pokemon */}
+      {/* // "release" CTA */}
+      {/* // "Open Modal" CTA -> Pokemon Details Modal */}
     </View>
   );
 };
 
-export default PokemonDetailsModal;
+export default CapturedPokemonScreen;
 
 const createStyles = ({ layout, colors }: ExtendedTheme) => {
   return StyleSheet.create({

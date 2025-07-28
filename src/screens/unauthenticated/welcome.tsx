@@ -4,13 +4,19 @@ import { ExtendedTheme, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 
+// "Create account/trainer" CTA -> onboarding
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
+  // query available Pokemon Trainers
+  // display as select list
+
   return (
     <View style={styles.container}>
       <RNText type={RNTextEnum.h1} customStyles={styles.font}>Welcome Screen</RNText>
+      {/* button that links to OnboardingStackNavigator */}
+      {/* list of existing trainers */}
     </View>
   );
 };

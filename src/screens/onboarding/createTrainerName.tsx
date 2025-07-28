@@ -4,26 +4,24 @@ import { ExtendedTheme, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 
-// Close Details Modal with X
-const PokemonDetailsModal: FC = () => {
+// "Go Back / Close" -> onboarding
+// "Choose Region" CTA -> ChooseRegionScreen
+const CreateTrainerNameScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
-  // query for more pokemon details
-  // display more info
-
-  // run catch - add-to caught pokemon list
+  // keyboard input logic
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Captured Pokemon Screen</RNText>
-      {/* display more info */}
-      {/* "Catch" CTA -> adds to caught pokemon */}
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Create Trainer Screen</RNText>
+      {/* // input to collect Trainer Name */}
+      {/* button that links to ChooseRegionScreen */}
     </View>
   );
 };
 
-export default PokemonDetailsModal;
+export default CreateTrainerNameScreen;
 
 const createStyles = ({ layout, colors }: ExtendedTheme) => {
   return StyleSheet.create({

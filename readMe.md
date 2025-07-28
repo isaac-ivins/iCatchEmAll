@@ -1,33 +1,21 @@
-## The goal:
-
-Our team is excited to see your programming style, skill, approach, and creativity applied to a React Native application.
-
-## Environment:
-
-The application should run locally on the iOS Simulator and the Android Emulator. Assume the person reviewing your code is set up with the following:
-
-- iOS on Mac
-
-  -Android on Mac
-
-Include the setup details necessary to run the application locally on either platform.
-
-Livefront should not be responsible for getting its own API keys or access. If an API key and/or username/password is required, you can send that to us separately (it does not need to be stored in the repository)
-
 ## The challenge:
 
-Using any publicly available API of your choosing (examples include Yelp, Flickr, New York Times, etc.), build a simple application with at least two screens. One screen should show a list of items from that API, while the second screen should show a detail view for one of those items. Use this as an opportunity to be creative and demonstrate your familiarity with native technologies.
+------------------------
 
-Use of Typescript is required.
+iCatchEmAll PokeDex
 
-Tests are required. They may take any form deemed appropriate for the app (such as Jest or Mocha tests), but should demonstrate a basic understanding of testing a React native app.
+-----------------------
 
-Use of 3rd party libraries for common tasks (networking, etc.) is acceptable and should be clearly called out.
 
-Use of open source code included directly in the project should be limited and clearly attributed with a link to the original source.
+Create Pokemon Trainers and "capture"/favorite pokemon from the Pokedex of your region.
 
-Code produced by generative AI is prohibited.
+Upon App Launch, users have the ability to create a new Pokemon Trainer or choose from one of the previously created Trainers.
 
-The app must be placed in a public repo on a site like GitHub or Bitbucket.
+After finishing the Onboarding Flow for creating a Pokemon Trainer users are shown:
+- A PokeDex Tab where they can search for Pokemon in their region
+- Caught Tab where they can view captured/favorited Pokemon
+- Profile Details Tab where they can "logout" to pick or create a new Pokemon Trainer
 
-The app must be able to be pulled down from your provided repo and built with the env details and instructions listed above.
+The Pokemon listed on the PokeDex Tab, as well as the Caught Tab, have an accompanied Pokemon Details Modal available with more info when pressed
+
+Data is stored in AsyncStorage so deleting the app off your device, or restarting the development client, may result in a loss of Pokemon Trainer data ( uh-oh! )

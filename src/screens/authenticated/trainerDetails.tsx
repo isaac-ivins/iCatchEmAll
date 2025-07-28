@@ -4,26 +4,25 @@ import { ExtendedTheme, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 
-// Close Details Modal with X
-const PokemonDetailsModal: FC = () => {
+// "Logout" CTA -> WelcomeScreen / UnauthStack
+const TrainerDetailsScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
-  // query for more pokemon details
-  // display more info
-
-  // run catch - add-to caught pokemon list
+  // run logut - aka remove dummy token
 
   return (
     <View style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Captured Pokemon Screen</RNText>
-      {/* display more info */}
-      {/* "Catch" CTA -> adds to caught pokemon */}
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Trainer Details Screen</RNText>
+      {/* // show name */}
+      {/* // show selected region */}
+      {/* // show total pokemon caugh # */}
+      {/* LOGOUT button that links to UnauthStack */}
     </View>
   );
 };
 
-export default PokemonDetailsModal;
+export default TrainerDetailsScreen;
 
 const createStyles = ({ layout, colors }: ExtendedTheme) => {
   return StyleSheet.create({

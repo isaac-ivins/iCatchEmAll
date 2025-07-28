@@ -8,11 +8,11 @@ import { LightTheme } from 'contsants/theme';
 const NavigationStack = createNativeStackNavigator<NavigationParamList>();
 
 const Navigation: FC = () => {
-  console.log('LightTheme: ', LightTheme);
   // impliment dark mode with theme toggle
   return (
     <NavigationContainer theme={LightTheme}>
       <NavigationStack.Navigator
+        screenOptions={{ headerShown: false }}
         initialRouteName={NavigationScreens.RootStackNavigator}
       >
         <NavigationStack.Screen
