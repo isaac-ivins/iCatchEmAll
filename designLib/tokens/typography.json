@@ -1,71 +1,58 @@
 {
   "typography": {
-    "fontFamily": {
-      "primary": ["Georgia", "serif"],
-      "secondary": ["Source Sans Pro", "sans-serif"]
-    },
-    "fontSize": {
-      "xSmall": 10,
-      "small": 14,
-      "medium": 18,
-      "large": 24,
-      "xLarge": 30,
-      "xxLarge": 48
-    },
-    "fontWeight": {
-      "small": "200",
-      "medium": "500",
-      "large": "800"
-    },
-    "lineHeight": {
-      "small": 1,
-      "medium": 1.5,
-      "large": 2
-    },
-    "letterSpacing": {
-      "small": "-0.025em",
-      "medium": "0em",
-      "large": "0.025em"
-    },
-    "headings": {
-      "h1": {
-        "fontFamily": "Georgia",
-        "fontSize": "xLarge",
-        "fontWeight": "medium",
-        "lineHeight": "large",
-        "letterSpacing": "large",
-        "color": "text"
+    "values": {
+      "fontFamily": {
+        "primary": "Georgia",
+        "secondary": "sans-serif"
       },
-      "h2": {
-        "fontFamily": "Georgia",
-        "fontSize": "large",
-        "fontWeight": "medium",
-        "lineHeight": "medium",
-        "letterSpacing": "medium"
+      "fontSize": {
+        "xSmall": 10,
+        "small": 14,
+        "medium": 18,
+        "large": 24,
+        "xLarge": 30,
+        "xxLarge": 48
       },
-      "h3": {
-        "fontFamily": "Source Sans Pro",
-        "fontSize": "medium",
-        "fontWeight": "small",
-        "lineHeight": "medium",
-        "letterSpacing": "medium"
+      "fontWeight": {
+        "small": "200",
+        "medium": "500",
+        "large": "800"
+      },
+      "lineHeight": {
+        "small": 1,
+        "medium": 1.5,
+        "large": 2
       }
     },
-    "paragraphs": {
-      "p1": {
-        "fontFamily": "serif",
-        "fontSize": "small",
-        "fontWeight": "medium",
-        "lineHeight": "medium",
-        "letterSpacing": "medium"
-      },
-      "p2": {
-        "fontFamily": "sans-serif",
-        "fontSize": "small",
-        "fontWeight": "medium",
-        "lineHeight": "medium",
-        "letterSpacing": "medium"
-      }
+    "h1": {
+      "fontFamily": "primary",
+      "fontSize": "xLarge",
+      "fontWeight": "medium",
+      "lineHeight": "large"
+    },
+    "h2": {
+      "fontFamily": "primary",
+      "fontSize": "large",
+      "fontWeight": "medium",
+      "lineHeight": "medium"
+    },
+    "h3": {
+      "fontFamily": "secondary",
+      "fontSize": "medium",
+      "fontWeight": "small",
+      "lineHeight": "medium"
+    },
+    "p1": {
+      "fontFamily": "secondary",
+      "fontSize": "small",
+      "fontWeight": "medium",
+      "lineHeight": "medium"
+    },
+    "p2": {
+      "fontFamily": "secondary",
+      "fontSize": "small",
+      "fontWeight": "medium",
+      "lineHeight": "medium"
     }
   }
 }

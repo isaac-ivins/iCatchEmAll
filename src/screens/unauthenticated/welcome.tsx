@@ -1,6 +1,8 @@
 import { FC, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ExtendedTheme, useTheme } from '@react-navigation/native';
+import RNText from 'components/text';
+import { RNTextEnum } from '../../../designLib/types/typography';
 
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
@@ -8,7 +10,7 @@ const WelcomeScreen: FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.font}>Welcome Screen</Text>
+      <RNText type={RNTextEnum.h1} customStyles={styles.font}>Welcome Screen</RNText>
     </View>
   );
 };
@@ -24,7 +26,6 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
       backgroundColor: colors.background,
     },
     font: {
-      fontSize: 40,
       color: colors.text,
       marginVertical: layout.scaledY.medium,
     },
