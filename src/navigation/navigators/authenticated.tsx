@@ -20,7 +20,6 @@ const AuthenticatedNavigationStack =
 const AuthenticatedBottomTabNavigator: FC = () => {
   return (
     <AuthenticatedBottomTabs.Navigator
-      screenOptions={{ headerShown: false }}
       initialRouteName={AuthenticatedBottomTabNavigatorScreens.PokedexScreen}
     >
       <AuthenticatedBottomTabs.Screen

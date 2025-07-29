@@ -9,10 +9,10 @@ import { useMainAppStore } from '../../store/main';
 const RootNavigationStack = createNativeStackNavigator<RootParamList>();
 
 const RootStackNavigator: FC = () => {
-  const { currentTrainer } = useMainAppStore();
-  
-  // todo - token validation
+  const currentTrainer = useMainAppStore((state) => state.currentTrainer);
   const isAuthenticated = !!currentTrainer;
+  
+  // todo - token validation (currentTrainer existing is the current check)
   
   return (
     <RootNavigationStack.Navigator
@@ -24,20 +24,17 @@ const RootStackNavigator: FC = () => {
       }
     >
       <RootNavigationStack.Screen
+        name={RootParamScreens.UnauthenticatedStackNavigator}
+        component={UnauthenticatedStackNavigator}
+      />
+      <RootNavigationStack.Screen
+        name={RootParamScreens.AuthenticatedStackNavigator}
+        component={AuthenticatedNavigationStack}
+      />
+      <RootNavigationStack.Screen
         name={RootParamScreens.OnboardingStackNavigator}
         component={OnboardingStackNavigator}
       />
-      {currentTrainer ? (
-        <RootNavigationStack.Screen
-          name={RootParamScreens.AuthenticatedStackNavigator}
-          component={AuthenticatedNavigationStack}
-        />
-      ) : (
-        <RootNavigationStack.Screen
-        name={RootParamScreens.UnauthenticatedStackNavigator}
-        component={UnauthenticatedStackNavigator}
-        />
-      )}
     </RootNavigationStack.Navigator>
   );
 };

@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View, TouchableOpacity, Alert } from 'react-native';
-import { ExtendedTheme, RouteProp, useNavigation, useRoute, useTheme } from '@react-navigation/native';
+import { CommonActions, ExtendedTheme, RouteProp, useNavigation, useRoute, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 import { useQuery } from '@apollo/client';
@@ -23,32 +23,31 @@ const ChooseTrainerRegionScreen: FC = () => {
   const { createTrainer, setCurrentTrainer } = useMainAppStore();
 
   const onSubmitHandler = () => {
-    
     if (selectedGen && route.params.name) {
-      // Create the trainer
       const newTrainer = {
         name: route.params.name,
         region: selectedGen,
         createdAt: new Date().toISOString(),
       };
       
-      createTrainer(newTrainer);
-      
-      // Set as current trainer (this will trigger navigation to authenticated stack)
       const currentTrainer = {
         ...newTrainer,
         id: Date.now().toString(),
         favoritePokemonIds: [],
       };
 
+      createTrainer(newTrainer);
+
       setCurrentTrainer(currentTrainer);
 
-      navigation.reset({
-        index: 0,
-        routes: [{ name: RootParamScreens.AuthenticatedStackNavigator }],
-      });
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: RootParamScreens.AuthenticatedStackNavigator }],
+        })
+      );
     } else {
-      Alert.alert('Whoops', 'Ensure the name and generation are set/selected')
+      Alert.alert('Whoops', 'Ensure the Name and Generation are set/selected')
     }
   }
 

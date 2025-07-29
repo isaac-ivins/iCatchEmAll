@@ -10,7 +10,6 @@ const OnboardingNavigationStack =
 const OnboardingStackNavigator: FC = () => {
   return (
     <OnboardingNavigationStack.Navigator
-      // screenOptions={{ headerShown: false }}
       initialRouteName={OnboardingScreens.CreateTrainerNameScreen}
     >
       <OnboardingNavigationStack.Screen
