@@ -4,13 +4,13 @@ import { ExtendedTheme, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_REGIONS } from 'graphql/queries';
+import { GET_ALL_GENERATIONS } from 'graphql/queries';
 
 // "Create account/trainer" CTA -> onboarding
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
-  const { loading, data } = useQuery(GET_ALL_REGIONS);
+  const { loading, data } = useQuery(GET_ALL_GENERATIONS);
 
   // query available Pokemon Trainers
   // display as select list
