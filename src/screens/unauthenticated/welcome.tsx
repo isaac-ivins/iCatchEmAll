@@ -34,7 +34,7 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
       backgroundColor: colors.background,
     },
     font: {
-      marginVertical: layout.scaledY.medium  
+      marginVertical: layout.scaledY.medium,
     },
   });
 };
