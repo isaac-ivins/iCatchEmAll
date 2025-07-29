@@ -62,7 +62,6 @@ const ChooseTrainerRegionScreen: FC = () => {
         extraData={selectedGen}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => {
-          // selectedGen
           const isSelected:boolean = item.name === selectedGen
           return (
             <TouchableOpacity onPress={() => setSelectedGen(item.name === selectedGen ? null : item.name)} style={styles.cellWrapper}>
@@ -126,7 +125,6 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
       borderColor: colors.primary,
     },
     font: {
-      color: colors.text,
       marginVertical: layout.scaledY.xSmall,
     },
     btn: {

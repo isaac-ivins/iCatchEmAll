@@ -55,7 +55,6 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
       marginHorizontal: layout.scaledX.medium
     },
     font: {
-      color: colors.text,
       marginVertical: layout.scaledY.xSmall,
     },
     error: {
