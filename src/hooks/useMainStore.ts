@@ -1,21 +1,17 @@
 import { useMainAppStore } from 'store/main';
+import { PokeDexPokemonType } from 'types/graphql';
 
 export const useTrainers = () => {
   const store = useMainAppStore();
   return {
     ...store,
-    isPokemonFavorited: (pokemonId: string) => {
-      return (
-        store.currentTrainer?.favoritePokemonIds.includes(pokemonId) || false
-      );
-    },
-    toggleFavorite: (pokemonId: string) => {
+    toggleFavorite: (pokemon: PokeDexPokemonType) => {
       const isFavorited =
-        store.currentTrainer?.favoritePokemonIds.includes(pokemonId) || false;
+        store.currentTrainer?.favoritePokemons?.some((pok) => pok.id === pokemon.id) || false;
       if (isFavorited) {
-        store.removeFromFavorites(pokemonId);
+        store.removeFromFavorites(pokemon);
       } else {
-        store.addToFavorites(pokemonId);
+        store.addToFavorites(pokemon);
       }
     },
   };

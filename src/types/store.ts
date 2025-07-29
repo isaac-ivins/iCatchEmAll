@@ -1,3 +1,5 @@
+import { PokeDexPokemonType } from "./graphql";
+
 export interface TrainerType {
   name: string;
   region: string;
@@ -5,7 +7,7 @@ export interface TrainerType {
 }
 export interface TrainerWithFavorites extends TrainerType {
   id: string;
-  favoritePokemonIds: string[];
+  favoritePokemons: PokeDexPokemonType[];
 }
 export interface MainAppStore {
   trainers: TrainerWithFavorites[];
@@ -13,6 +15,6 @@ export interface MainAppStore {
   setCurrentTrainer: (trainer: TrainerWithFavorites | null) => void;
   createTrainer: (trainer: TrainerType) => void;
   deleteTrainer: (id: string) => void;
-  addToFavorites: (pokemonId: string) => void;
-  removeFromFavorites: (pokemonId: string) => void;
+  addToFavorites: (pokemon: PokeDexPokemonType) => void;
+  removeFromFavorites: (pokemon: PokeDexPokemonType) => void;
 }

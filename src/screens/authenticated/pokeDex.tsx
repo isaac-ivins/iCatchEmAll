@@ -1,8 +1,6 @@
 import { FC, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
-import { FlatList, RefreshControl, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import { ExtendedTheme, useNavigation, useTheme } from '@react-navigation/native';
-import RNText from 'components/text';
-import { RNTextEnum } from '../../../designLib/types/typography';
 import { useLazyQuery } from '@apollo/client';
 import { GET_ALL_POKEMON_BY_GENERATION_NAME } from 'graphql/queries';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,7 +8,7 @@ import { useMainAppStore } from 'store/main';
 import { PokeDexPokemonType } from 'types/graphql';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AuthenticatedStackNavigatorParamList, AuthenticatedStackNavigatorScreens } from 'types/nav';
-import { capFirstLetter } from 'helpers';
+import PokemonList from 'components/pokemonList';
 
 // Open Details Modal with CTA on Pokemon Tile
 const PokedexScreen: FC = () => {
@@ -39,56 +37,32 @@ const PokedexScreen: FC = () => {
   // lazy query error handling
   useEffect(() => {
     if (error) {
-      console.log('error: ', error)
+      Alert.alert('Whoops!', 'There was an issue with our network request. Try again Soon. :/')
     }
   }, [error, loading])
 
-  // refresh control -> refetch w delay for visual aid
+  // refresh control -> refetch
   const onRefresh = useCallback(async () => {
     setRefreshing(true)
     await refetch();
     setRefreshing(false)
   }, [])
 
-  // handle Open Details Modal
-  const onPressOpenDetailsModalHandler = (pokemonId: string) => {
+  // Navigates to PokemonDetailsModal
+  const onPressOpenDetailsModalHandler = (pokemon: PokeDexPokemonType) => {
     navigation.navigate(AuthenticatedStackNavigatorScreens.PokemonDetailsModal, {
-      pokemonId: pokemonId
+      pokemonId: pokemon.id
     });
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList<PokeDexPokemonType>
+      <PokemonList
         data={data?.pokemon ?? []}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
-        }
-        extraData={currentTrainer?.favoritePokemonIds}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => onPressOpenDetailsModalHandler(item.id)}
-              style={styles.cellWrapper}
-            >
-              <View style={styles.cellContainer}>
-                <RNText
-                  type={RNTextEnum.p1}
-                >
-                  {capFirstLetter(item.name)}
-                </RNText>
-              </View>
-            </TouchableOpacity>
-          )
-        }}
+        onPress={onPressOpenDetailsModalHandler}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
       />
-      <RNText type={RNTextEnum.h1} customStyles={styles.font}>
-        PokeDex Screen
-      </RNText>
     </SafeAreaView>
   );
 };
@@ -100,22 +74,6 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
     container: {
       backgroundColor: colors.background,
       marginHorizontal: layout.scaledX.medium,
-    },
-    font: {
-      marginVertical: layout.scaledY.medium,
-    },
-    cellWrapper: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    cellContainer: {
-      borderWidth: 1,
-      borderColor: colors.border,
-      marginVertical: layout.scaledY.xxSmall,
-      paddingHorizontal: layout.scaledX.medium,
-      paddingVertical: layout.scaledY.xSmall,
-      borderRadius: layout.scaledX.xSmall,
-    },
+    }
   });
 };

@@ -31,7 +31,7 @@ const PokemonDetailsModal: FC = () => {
     notifyOnNetworkStatusChange: true,
   });
   const { pokemonId } = route.params;
-  const isCaught = currentTrainer?.favoritePokemonIds.includes(pokemonId);
+  const isCaught = currentTrainer?.favoritePokemons?.some((pok) => pok.id === pokemonId);
 
   // query for more pokemon details
   // display more info
@@ -50,32 +50,29 @@ const PokemonDetailsModal: FC = () => {
     }
   }, [error, loading])
 
+  const onPressToggleFavoriteHandler = () => {
+    console.log('data?.details[0].name: ', data?.details[0].name);
+    toggleFavorite({ name: data?.details[0].name, id: pokemonId })
+  }
 
   return (
     <View style={styles.container}>
-
       <RNText type={RNTextEnum.h2} customStyles={styles.font}>
-        Name: {data?.details[0]?.name}
+        Name: {data?.details[0].name}
       </RNText>
-
       <RNText type={RNTextEnum.h3} customStyles={styles.font}>
         Height: {data?.details[0]?.height} m
       </RNText>
-
       <RNText type={RNTextEnum.h3} customStyles={styles.font}>
         Weidht: {data?.details[0]?.weight} kg
       </RNText>
-
       <RNText type={RNTextEnum.h3} customStyles={styles.font}>
         Base Experience: {data?.details[0]?.base_experience}
       </RNText>
-
-      {/* display more info */}
       <RNButton
-        // style={styles.btn}
         type={isCaught ? ButtonType.Secondary : ButtonType.Primary}
         title={isCaught ? 'Release' : 'Catch!'}
-        onPress={() => toggleFavorite(pokemonId)}
+        onPress={onPressToggleFavoriteHandler}
       />
     </View>
   );

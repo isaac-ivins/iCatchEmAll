@@ -6,6 +6,7 @@ import {
   TrainerWithFavorites,
   MainAppStore,
 } from '../types/store';
+import { PokeDexPokemonType } from 'types/graphql';
 
 export const useMainAppStore = create<MainAppStore>()(
   persist(
@@ -19,7 +20,7 @@ export const useMainAppStore = create<MainAppStore>()(
         const newTrainer: TrainerWithFavorites = {
           ...trainerData,
           id: Date.now().toString(),
-          favoritePokemonIds: [],
+          favoritePokemons: [],
         };
         set((state: MainAppStore) => ({
           trainers: [...state.trainers, newTrainer],
@@ -32,14 +33,14 @@ export const useMainAppStore = create<MainAppStore>()(
             state.currentTrainer?.id === id ? null : state.currentTrainer,
         }));
       },
-      addToFavorites: (pokemonId: string) => {
+      addToFavorites: (pokemon: PokeDexPokemonType) => {
         set((state: MainAppStore) => {
           if (!state.currentTrainer) return state;
           const updatedCurrentTrainer = {
             ...state.currentTrainer,
-            favoritePokemonIds: [
-              ...state.currentTrainer.favoritePokemonIds,
-              pokemonId,
+            favoritePokemons: [
+              pokemon,
+              ...state.currentTrainer.favoritePokemons,
             ],
           };
           const updatedTrainers = state.trainers.map((trainer) =>
@@ -53,13 +54,13 @@ export const useMainAppStore = create<MainAppStore>()(
           };
         });
       },
-      removeFromFavorites: (pokemonId: string) => {
+      removeFromFavorites: (pokemon: PokeDexPokemonType) => {
         set((state: MainAppStore) => {
           if (!state.currentTrainer) return state;
           const updatedCurrentTrainer = {
             ...state.currentTrainer,
-            favoritePokemonIds: state.currentTrainer.favoritePokemonIds.filter(
-              (id: string) => id !== pokemonId,
+            favoritePokemonIds: state.currentTrainer.favoritePokemons.filter(
+              (poke: PokeDexPokemonType) => poke.id !== pokemon.id,
             ),
           };
           const updatedTrainers = state.trainers.map((trainer) =>

@@ -21,7 +21,7 @@ const TrainerDetailsScreen: FC = () => {
   const name = useMainAppStore((state) => state.currentTrainer?.name);
   const region = useMainAppStore((state) => state.currentTrainer?.region);
   const trainerFavorites = useMainAppStore(
-    (state) => state.currentTrainer?.favoritePokemonIds,
+    (state) => state.currentTrainer?.favoritePokemons,
   );
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 

@@ -57,7 +57,7 @@ const ChooseTrainerRegionScreen: FC = () => {
       const currentTrainer = {
         ...newTrainer,
         id: Date.now().toString(),
-        favoritePokemonIds: [],
+        favoritePokemons: [],
       };
 
       createTrainer(newTrainer);

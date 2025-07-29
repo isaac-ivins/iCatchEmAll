@@ -11,3 +11,4 @@ export interface PokeDexPokemonType {
   id: string;
   name: string;
 }
+
