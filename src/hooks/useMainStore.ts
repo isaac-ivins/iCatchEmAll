@@ -7,7 +7,9 @@ export const useTrainers = () => {
     ...store,
     toggleFavorite: (pokemon: PokeDexPokemonType) => {
       const isFavorited =
-        store.currentTrainer?.favoritePokemons?.some((pok) => pok.id === pokemon.id) || false;
+        store.currentTrainer?.favoritePokemons?.some(
+          (pok) => pok.id === pokemon.id,
+        ) || false;
       if (isFavorited) {
         store.removeFromFavorites(pokemon);
       } else {

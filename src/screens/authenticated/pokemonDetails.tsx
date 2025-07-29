@@ -1,9 +1,17 @@
 import { FC, useEffect, useLayoutEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ExtendedTheme, RouteProp, useRoute, useTheme } from '@react-navigation/native';
+import {
+  ExtendedTheme,
+  RouteProp,
+  useRoute,
+  useTheme,
+} from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
-import { AuthenticatedStackNavigatorParamList, AuthenticatedStackNavigatorScreens } from 'types/nav';
+import {
+  AuthenticatedStackNavigatorParamList,
+  AuthenticatedStackNavigatorScreens,
+} from 'types/nav';
 import { useLazyQuery } from '@apollo/client';
 import { GET_POKEMON_DETAILS_BY_POKEMON_ID } from 'graphql/queries';
 import RNButton, { ButtonType } from 'components/button';
@@ -23,37 +31,37 @@ const PokemonDetailsModal: FC = () => {
         AuthenticatedStackNavigatorScreens.PokemonDetailsModal
       >
     >();
-  const [
-    runLazyGetPokemonDetailsByPokemonIdQuery,
-    { data, loading, error },
-  ] = useLazyQuery(GET_POKEMON_DETAILS_BY_POKEMON_ID, {
-    fetchPolicy: 'no-cache',
-    notifyOnNetworkStatusChange: true,
-  });
+  const [runLazyGetPokemonDetailsByPokemonIdQuery, { data, loading, error }] =
+    useLazyQuery(GET_POKEMON_DETAILS_BY_POKEMON_ID, {
+      fetchPolicy: 'no-cache',
+      notifyOnNetworkStatusChange: true,
+    });
   const { pokemonId } = route.params;
-  const isCaught = currentTrainer?.favoritePokemons?.some((pok) => pok.id === pokemonId);
+  const isCaught = currentTrainer?.favoritePokemons?.some(
+    (pok) => pok.id === pokemonId,
+  );
 
   // query for more pokemon details
   // display more info
   useLayoutEffect(() => {
     runLazyGetPokemonDetailsByPokemonIdQuery({
       variables: {
-        pokeId: pokemonId
-      }
-    })
-  }, [])
+        pokeId: pokemonId,
+      },
+    });
+  }, []);
 
   // lazy query error handling
   useEffect(() => {
     if (error) {
-      console.log('error: ', error)
+      console.log('error: ', error);
     }
-  }, [error, loading])
+  }, [error, loading]);
 
   const onPressToggleFavoriteHandler = () => {
     console.log('data?.details[0].name: ', data?.details[0].name);
-    toggleFavorite({ name: data?.details[0].name, id: pokemonId })
-  }
+    toggleFavorite({ name: data?.details[0].name, id: pokemonId });
+  };
 
   return (
     <View style={styles.container}>

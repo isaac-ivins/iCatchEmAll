@@ -1,4 +1,4 @@
-import { PokeDexPokemonType } from "./graphql";
+import { PokeDexPokemonType } from './graphql';
 
 export interface TrainerType {
   name: string;
