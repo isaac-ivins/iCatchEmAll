@@ -1,7 +1,11 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TrainerType, TrainerWithFavorites, MainAppStore } from '../types/store';
+import {
+  TrainerType,
+  TrainerWithFavorites,
+  MainAppStore,
+} from '../types/store';
 
 export const useMainAppStore = create<MainAppStore>()(
   persist(
@@ -75,4 +79,4 @@ export const useMainAppStore = create<MainAppStore>()(
       storage: createJSONStorage(() => AsyncStorage), // (optional) by default, 'localStorage' is used
     },
   ),
-)
+);

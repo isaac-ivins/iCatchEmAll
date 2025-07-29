@@ -1,6 +1,11 @@
 import { FC, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { CommonActions, ExtendedTheme, useNavigation, useTheme } from '@react-navigation/native';
+import {
+  CommonActions,
+  ExtendedTheme,
+  useNavigation,
+  useTheme,
+} from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 import RNButton from 'components/button';
@@ -15,7 +20,9 @@ const TrainerDetailsScreen: FC = () => {
   const { setCurrentTrainer } = useMainAppStore();
   const name = useMainAppStore((state) => state.currentTrainer?.name);
   const region = useMainAppStore((state) => state.currentTrainer?.region);
-  const trainerFavorites = useMainAppStore((state) => state.currentTrainer?.favoritePokemonIds);
+  const trainerFavorites = useMainAppStore(
+    (state) => state.currentTrainer?.favoritePokemonIds,
+  );
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
   const handleLogoutLogic = () => {
@@ -25,23 +32,30 @@ const TrainerDetailsScreen: FC = () => {
       CommonActions.reset({
         index: 0,
         routes: [{ name: RootParamScreens.UnauthenticatedStackNavigator }],
-      })
+      }),
     );
-  }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <RNText type={RNTextEnum.h2} customStyles={styles.font}>{name}</RNText>
-        <RNText type={RNTextEnum.h2} customStyles={[styles.font, styles.margin]}>{region}</RNText>
-        <RNText type={RNTextEnum.h2} customStyles={[styles.font, styles.margin]}>
+        <RNText type={RNTextEnum.h2} customStyles={styles.font}>
+          {name}
+        </RNText>
+        <RNText
+          type={RNTextEnum.h2}
+          customStyles={[styles.font, styles.margin]}
+        >
+          {region}
+        </RNText>
+        <RNText
+          type={RNTextEnum.h2}
+          customStyles={[styles.font, styles.margin]}
+        >
           Pokemon Caught: {trainerFavorites?.length ?? '0'}
         </RNText>
       </View>
-      <RNButton
-        title={'Logout'}
-        onPress={handleLogoutLogic}
-      />
+      <RNButton title={'Logout'} onPress={handleLogoutLogic} />
     </View>
   );
 };
@@ -52,18 +66,18 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
   return StyleSheet.create({
     container: {
       backgroundColor: colors.background,
-      marginHorizontal: layout.scaledX.medium
+      marginHorizontal: layout.scaledX.medium,
     },
     font: {
       color: colors.text,
     },
     margin: {
-      marginTop: layout.scaledY.small
+      marginTop: layout.scaledY.small,
     },
     header: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginVertical: layout.scaledY.medium
-    }
+      marginVertical: layout.scaledY.medium,
+    },
   });
 };

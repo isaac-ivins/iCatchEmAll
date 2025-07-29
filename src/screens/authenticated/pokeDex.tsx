@@ -15,7 +15,7 @@ const PokedexScreen: FC = () => {
   return (
     <View style={styles.container}>
       <RNText type={RNTextEnum.h1} customStyles={styles.font}>
-        Captured Pokemon Screen
+        PokeDex Screen
       </RNText>
       {/* display list of pokemon of trainers region */}
       {/* // - hide if already "caught" */}

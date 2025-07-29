@@ -1,13 +1,31 @@
 import { FC, useMemo, useState } from 'react';
-import { FlatList, StyleSheet, View, TouchableOpacity, Alert } from 'react-native';
-import { CommonActions, ExtendedTheme, RouteProp, useNavigation, useRoute, useTheme } from '@react-navigation/native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import {
+  CommonActions,
+  ExtendedTheme,
+  RouteProp,
+  useNavigation,
+  useRoute,
+  useTheme,
+} from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_GENERATIONS } from 'graphql/queries';
 import { PokeDexGeneration } from 'types/graphql';
 import RNButton from 'components/button';
-import { OnboardingParamList, OnboardingScreens, RootParamList, RootParamScreens } from 'types/nav';
+import {
+  OnboardingParamList,
+  OnboardingScreens,
+  RootParamList,
+  RootParamScreens,
+} from 'types/nav';
 import { useMainAppStore } from '../../store/main';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -19,7 +37,13 @@ const ChooseTrainerRegionScreen: FC = () => {
   const { data } = useQuery(GET_ALL_GENERATIONS);
   const [selectedGen, setSelectedGen] = useState<string | null>(null);
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
-  const route = useRoute<RouteProp<OnboardingParamList, OnboardingScreens.ChooseTrainerRegionScreen>>();
+  const route =
+    useRoute<
+      RouteProp<
+        OnboardingParamList,
+        OnboardingScreens.ChooseTrainerRegionScreen
+      >
+    >();
   const { createTrainer, setCurrentTrainer } = useMainAppStore();
 
   const onSubmitHandler = () => {
@@ -29,7 +53,7 @@ const ChooseTrainerRegionScreen: FC = () => {
         region: selectedGen,
         createdAt: new Date().toISOString(),
       };
-      
+
       const currentTrainer = {
         ...newTrainer,
         id: Date.now().toString(),
@@ -44,12 +68,12 @@ const ChooseTrainerRegionScreen: FC = () => {
         CommonActions.reset({
           index: 0,
           routes: [{ name: RootParamScreens.AuthenticatedStackNavigator }],
-        })
+        }),
       );
     } else {
-      Alert.alert('Whoops', 'Ensure the Name and Generation are set/selected')
+      Alert.alert('Whoops', 'Ensure the Name and Generation are set/selected');
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -62,21 +86,35 @@ const ChooseTrainerRegionScreen: FC = () => {
         extraData={selectedGen}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => {
-          const isSelected:boolean = item.name === selectedGen
+          const isSelected: boolean = item.name === selectedGen;
           return (
-            <TouchableOpacity onPress={() => setSelectedGen(item.name === selectedGen ? null : item.name)} style={styles.cellWrapper}>
-              <View style={[
-                styles.cellContainer,
-                isSelected && { borderColor: theme.colors.primary, borderWidth: 2 }
-              ]}>
-                <RNText 
-                  customStyles={isSelected ? { color: theme.colors.primary } : undefined} 
+            <TouchableOpacity
+              onPress={() =>
+                setSelectedGen(item.name === selectedGen ? null : item.name)
+              }
+              style={styles.cellWrapper}
+            >
+              <View
+                style={[
+                  styles.cellContainer,
+                  isSelected && {
+                    borderColor: theme.colors.primary,
+                    borderWidth: 2,
+                  },
+                ]}
+              >
+                <RNText
+                  customStyles={
+                    isSelected ? { color: theme.colors.primary } : undefined
+                  }
                   type={RNTextEnum.p1}
                 >
                   Title: {item.name}
                 </RNText>
-                <RNText 
-                  customStyles={isSelected ? { color: theme.colors.primary } : undefined} 
+                <RNText
+                  customStyles={
+                    isSelected ? { color: theme.colors.primary } : undefined
+                  }
                   type={RNTextEnum.p1}
                 >
                   Total: {item.pokemon_species.aggregate.count}
@@ -102,7 +140,7 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
   return StyleSheet.create({
     container: {
       backgroundColor: colors.background,
-      marginHorizontal: layout.scaledX.medium
+      marginHorizontal: layout.scaledX.medium,
     },
     cellWrapper: {
       flex: 1,
@@ -128,7 +166,7 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
       marginVertical: layout.scaledY.xSmall,
     },
     btn: {
-      marginVertical: layout.scaledY.medium
-    }
+      marginVertical: layout.scaledY.medium,
+    },
   });
 };

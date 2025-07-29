@@ -1,6 +1,11 @@
 import { FC, useMemo } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { ExtendedTheme, useNavigation, useTheme } from '@react-navigation/native';
+import {
+  CommonActions,
+  ExtendedTheme,
+  useNavigation,
+  useTheme,
+} from '@react-navigation/native';
 import { RNTextEnum } from '../../../designLib/types/typography';
 import RNButton from 'components/button';
 import RNText from 'components/text';
@@ -16,55 +21,75 @@ const WelcomeScreen: FC = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   const trainers = useMainAppStore((state) => state.trainers);
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
+  const { setCurrentTrainer } = useMainAppStore();
 
-  // query available Pokemon Trainers
-  // display as select list
-  // useEffect(() => {
-  //   console.log('loading: ', loading)
-  //   if (!loading) {
-  //     console.log('data: ', data)
-  //   }
-  // }, [loading])
+  // handle create trainer
+  const onPressCreateTrainerHandler = () => {
+    navigation.navigate(RootParamScreens.OnboardingStackNavigator);
+  };
 
-  const onPressHandler = () => {
-    navigation.navigate(RootParamScreens.OnboardingStackNavigator)
-  }
+  // handle login w/ trainer
+  const onPressLoginWithTrainerHandler = (trainer: TrainerWithFavorites) => {
+    setCurrentTrainer(trainer);
+    navigation.navigate(RootParamScreens.OnboardingStackNavigator);
+
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: RootParamScreens.AuthenticatedStackNavigator }],
+      }),
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <RNText type={RNTextEnum.h1} customStyles={[styles.centerText, styles.textVertMargin]}>
+      <RNText
+        type={RNTextEnum.h1}
+        customStyles={[styles.centerText, styles.textVertMargin]}
+      >
         iCatchEmAll
       </RNText>
-      <RNText type={RNTextEnum.h3} customStyles={[styles.centerText, styles.textVertMargin]}>
-        In this mobile-app users can create Pokemon Trainers, select what generation of Pokemon to &quot;catch&quot;, and try to catch them all!
+      <RNText
+        type={RNTextEnum.h3}
+        customStyles={[styles.centerText, styles.textVertMargin]}
+      >
+        In this mobile-app users can create Pokemon Trainers, select what
+        generation of Pokemon to &quot;catch&quot;, and try to catch them all!
       </RNText>
-      <RNButton style={styles.btn} title={'Create Trainer'} onPress={onPressHandler} />
-      {/* list of existing trainers */}
-
-      <View style={styles.existingContainer}>
-        <RNText type={RNTextEnum.h2} customStyles={styles.textVertMargin}>
-          Choose Existing Trainers:
-        </RNText>
-        {!trainers && (
-          <RNText type={RNTextEnum.p1} customStyles={[styles.centerText, styles.textVertMargin]}>No existing trainers :/</RNText>
-        )}
-        {trainers && (
-        <FlatList<TrainerWithFavorites>
+      <RNButton
+        style={styles.btn}
+        title={'Create Trainer'}
+        onPress={onPressCreateTrainerHandler}
+      />
+      {trainers && (
+        <View style={styles.existingContainer}>
+          <RNText type={RNTextEnum.h2} customStyles={styles.textVertMargin}>
+            Choose Existing Trainers:
+          </RNText>
+          <FlatList<TrainerWithFavorites>
             data={trainers}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => {
               return (
-                <TouchableOpacity onPress={() => console.log('yo')} style={styles.cellWrapper}>
+                <TouchableOpacity
+                  onPress={() => onPressLoginWithTrainerHandler(item)}
+                  style={styles.cellWrapper}
+                >
                   <View style={styles.cellContainer}>
-                    <RNText type={RNTextEnum.p1} customStyles={styles.centerText}>{item.name} - {item.region}</RNText>
+                    <RNText
+                      type={RNTextEnum.p1}
+                      customStyles={styles.centerText}
+                    >
+                      {item.name} - {item.region}
+                    </RNText>
                   </View>
                 </TouchableOpacity>
-              )
+              );
             }}
-        />
+          />
+        </View>
       )}
-      </View>
-      <RNText type={RNTextEnum.h2} customStyles={styles.textVertMargin}>
+      <RNText type={RNTextEnum.h3} customStyles={styles.textVertMargin}>
         By: Isaac Ivins
       </RNText>
     </SafeAreaView>
@@ -80,7 +105,7 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: colors.background,
-      marginHorizontal: layout.scaledX.medium
+      marginHorizontal: layout.scaledX.medium,
     },
     centerText: {
       textAlign: 'center',
@@ -106,6 +131,6 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
     },
     btn: {
       marginVertical: layout.scaledY.small,
-    }
+    },
   });
 };

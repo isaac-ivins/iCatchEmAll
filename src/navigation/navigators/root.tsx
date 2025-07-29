@@ -11,15 +11,15 @@ const RootNavigationStack = createNativeStackNavigator<RootParamList>();
 const RootStackNavigator: FC = () => {
   const currentTrainer = useMainAppStore((state) => state.currentTrainer);
   const isAuthenticated = !!currentTrainer;
-  
+
   // todo - token validation (currentTrainer existing is the current check)
-  
+
   return (
     <RootNavigationStack.Navigator
       screenOptions={{ headerShown: false }}
       initialRouteName={
-        isAuthenticated 
-          ? RootParamScreens.AuthenticatedStackNavigator 
+        isAuthenticated
+          ? RootParamScreens.AuthenticatedStackNavigator
           : RootParamScreens.UnauthenticatedStackNavigator
       }
     >

@@ -1,14 +1,14 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_ALL_GENERATIONS = gql`
   query getAllGenerations {
     generations: generation {
-        name
-        pokemon_species: pokemonspecies_aggregate {
-            aggregate {
-                count
-            }
+      name
+      pokemon_species: pokemonspecies_aggregate {
+        aggregate {
+          count
         }
+      }
     }
   }
 `;
@@ -16,36 +16,24 @@ export const GET_ALL_GENERATIONS = gql`
 export const GET_ALL_POKEMON_BY_GENERATION_NAME = gql`
   query getAllPokemonByGenerationName($genName: String!) {
     pokemon: pokemonspecies(
-        where: {
-            generation: {
-                name: {
-                    _eq: $genName
-                }
-            }
-        }
-        order_by: {
-            id: asc
-        }
+      where: { generation: { name: { _eq: $genName } } }
+      order_by: { id: asc }
     ) {
-        name
-        id
+      name
+      id
     }
   }
 `;
 
 export const GET_POKEMON_DETAILS_BY_POKEMON_ID = gql`
   query getPokemonDetailsByPokemonId($pokeId: Int!) {
-    details: pokemon(where:  {
-        id:  {
-            _eq: $pokeId
-        }
-    }) {
-        id
-        name
-        height
-        is_default
-        base_experience
-        weight
+    details: pokemon(where: { id: { _eq: $pokeId } }) {
+      id
+      name
+      height
+      is_default
+      base_experience
+      weight
     }
   }
 `;

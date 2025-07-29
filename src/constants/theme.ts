@@ -7,7 +7,7 @@ import getTransformedTypeographyFromTokens from '../../designLib/tools/typograph
 
 const { width, height } = Dimensions.get('window');
 const fonts = getTransformedTypeographyFromTokens();
-const layout = getLayoutFromClientViewportDeminsions(width, height)
+const layout = getLayoutFromClientViewportDeminsions(width, height);
 
 export const LightTheme: CustomThemeType = {
   dark: false,
