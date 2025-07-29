@@ -13,8 +13,8 @@ export const GET_ALL_GENERATIONS = gql`
   }
 `;
 
-export const GET_ALL_POKEMON_BY_GENERATION = gql`
-  query getAllGenerations($genName: String!) {
+export const GET_ALL_POKEMON_BY_GENERATION_NAME = gql`
+  query getAllPokemonByGenerationName($genName: String!) {
     pokemon: pokemonspecies(
         where: {
             generation: {
@@ -33,8 +33,8 @@ export const GET_ALL_POKEMON_BY_GENERATION = gql`
   }
 `;
 
-export const GET_DETAILS_BY_POKEMON_ID = gql`
-  query getPokemonDetails($pokeId: Int!) {
+export const GET_POKEMON_DETAILS_BY_POKEMON_ID = gql`
+  query getPokemonDetailsByPokemonId($pokeId: Int!) {
     details: pokemon(where:  {
         id:  {
             _eq: $pokeId

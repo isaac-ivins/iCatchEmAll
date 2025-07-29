@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { OnboardingScreens, OnboardingParamList } from 'types/nav';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import WelcomeScreen from '@screens/unauthenticated/welcome';
-import { FC } from 'react';
+import CreateTrainerNameScreen from '@screens/onboarding/createTrainerName';
+import ChooseTrainerRegionScreen from '@screens/onboarding/chooseRegion';
 
 const OnboardingNavigationStack =
   createNativeStackNavigator<OnboardingParamList>();
@@ -9,16 +10,16 @@ const OnboardingNavigationStack =
 const OnboardingStackNavigator: FC = () => {
   return (
     <OnboardingNavigationStack.Navigator
-      screenOptions={{ headerShown: false }}
+      // screenOptions={{ headerShown: false }}
       initialRouteName={OnboardingScreens.CreateTrainerNameScreen}
     >
       <OnboardingNavigationStack.Screen
         name={OnboardingScreens.CreateTrainerNameScreen}
-        component={WelcomeScreen}
+        component={CreateTrainerNameScreen}
       />
       <OnboardingNavigationStack.Screen
         name={OnboardingScreens.ChooseTrainerRegionScreen}
-        component={WelcomeScreen}
+        component={ChooseTrainerRegionScreen}
       />
     </OnboardingNavigationStack.Navigator>
   );

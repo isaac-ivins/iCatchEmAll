@@ -1,5 +1,5 @@
 export type NavigationParamList = {
-  RootStackNavigator: undefined;
+  [NavigationScreens.RootStackNavigator]: undefined;
 };
 
 export enum NavigationScreens {
@@ -9,9 +9,9 @@ export enum NavigationScreens {
 // --------------------------------------------
 
 export type RootParamList = {
-  UnauthenticatedStackNavigator: undefined;
-  OnboardingStackNavigator: undefined;
-  AuthenticatedStackNavigator: undefined;
+  [RootParamScreens.UnauthenticatedStackNavigator]: undefined;
+  [RootParamScreens.OnboardingStackNavigator]: undefined;
+  [RootParamScreens.AuthenticatedStackNavigator]: undefined;
 };
 
 export enum RootParamScreens {
@@ -23,7 +23,7 @@ export enum RootParamScreens {
 // --------------------------------------------
 
 export type UnauthenticatedParamList = {
-  WelcomeScreen: undefined;
+  [UnauthenticatedScreens.WelcomeScreen]: undefined;
 };
 
 export enum UnauthenticatedScreens {
@@ -33,8 +33,8 @@ export enum UnauthenticatedScreens {
 // --------------------------------------------
 
 export type OnboardingParamList = {
-  CreateTrainerNameScreen: undefined;
-  ChooseTrainerRegionScreen: undefined;
+  [OnboardingScreens.CreateTrainerNameScreen]: undefined;
+  [OnboardingScreens.ChooseTrainerRegionScreen]: { name: string };
 };
 
 export enum OnboardingScreens {
