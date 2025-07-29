@@ -1,5 +1,12 @@
-import { TrainerType, TrainerWithFavorites } from './trainer';
-
+export interface TrainerType {
+  name: string;
+  region: string;
+  createdAt: string;
+}
+export interface TrainerWithFavorites extends TrainerType {
+  id: string;
+  favoritePokemonIds: string[];
+}
 export interface MainAppStore {
   trainers: TrainerWithFavorites[];
   currentTrainer: TrainerWithFavorites | null;

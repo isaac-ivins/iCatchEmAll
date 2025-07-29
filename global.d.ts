@@ -1,4 +1,4 @@
-import { CustomThemeType } from 'contsants/theme';
+import { CustomThemeType } from '@constants/theme';
 
 declare module '@react-navigation/native' {
   export type ExtendedTheme = CustomThemeType;

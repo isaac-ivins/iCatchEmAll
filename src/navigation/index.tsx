@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from '@navigation/navigators/root';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationParamList, NavigationScreens } from 'types/nav';
-import { LightTheme } from 'contsants/theme';
+import { LightTheme } from '@constants/theme';
 
 const NavigationStack = createNativeStackNavigator<NavigationParamList>();
 

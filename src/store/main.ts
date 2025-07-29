@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-import { TrainerType, TrainerWithFavorites } from '../types/trainer';
-import { MainAppStore } from '../types/store';
+import { TrainerType, TrainerWithFavorites, MainAppStore } from '../types/store';
 
 export const useMainAppStore = create<MainAppStore>((set) => ({
   trainers: [],
@@ -67,26 +66,3 @@ export const useMainAppStore = create<MainAppStore>((set) => ({
     });
   },
 }));
-
-// Custom hook for easy access to trainer store
-export const useTrainers = () => {
-  const store = useMainAppStore();
-
-  return {
-    ...store,
-    isPokemonFavorited: (pokemonId: string) => {
-      return (
-        store.currentTrainer?.favoritePokemonIds.includes(pokemonId) || false
-      );
-    },
-    toggleFavorite: (pokemonId: string) => {
-      const isFavorited =
-        store.currentTrainer?.favoritePokemonIds.includes(pokemonId) || false;
-      if (isFavorited) {
-        store.removeFromFavorites(pokemonId);
-      } else {
-        store.addToFavorites(pokemonId);
-      }
-    },
-  };
-};

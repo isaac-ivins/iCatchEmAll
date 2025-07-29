@@ -1,16 +1,25 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ExtendedTheme, useTheme } from '@react-navigation/native';
 import RNText from 'components/text';
 import { RNTextEnum } from '../../../designLib/types/typography';
+import { useQuery } from '@apollo/client';
+import { GET_ALL_REGIONS } from 'graphql/queries';
 
 // "Create account/trainer" CTA -> onboarding
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const { loading, data } = useQuery(GET_ALL_REGIONS);
 
   // query available Pokemon Trainers
   // display as select list
+  useEffect(() => {
+    console.log('loading: ', loading)
+    if (!loading) {
+      console.log('data: ', data)
+    }
+  }, [loading])
 
   return (
     <View style={styles.container}>
