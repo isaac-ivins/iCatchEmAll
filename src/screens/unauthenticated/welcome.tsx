@@ -19,9 +19,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const { setCurrentTrainer } = useMainAppStore();
   const trainers = useMainAppStore((state) => state.trainers);
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
-  const { setCurrentTrainer } = useMainAppStore();
 
   // handle create trainer
   const onPressCreateTrainerHandler = () => {

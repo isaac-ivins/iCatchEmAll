@@ -46,7 +46,9 @@ export enum OnboardingScreens {
 
 export type AuthenticatedStackNavigatorParamList = {
   AuthenticatedBottomTabNavigator: undefined;
-  PokemonDetailsModal: undefined;
+  PokemonDetailsModal: {
+    pokemonId: string;
+  };
 };
 
 export enum AuthenticatedStackNavigatorScreens {
