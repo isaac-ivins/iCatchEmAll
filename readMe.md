@@ -15,8 +15,6 @@ Upon launching the app, you can:
 - **Explore the PokeDex Tab** to search for Pokemon in your Generation
 - **View your Caught Pokemon** in a dedicated space
 
-Once you're set up, explore these exciting features:
-
 > **Note:** Data is stored locally using AsyncStorage. Deleting the app or restarting the development client may result in loss of your Pokemon Trainer data. *Yikes!*
 
 ---
