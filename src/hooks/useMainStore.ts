@@ -8,10 +8,12 @@ export const useTrainers = () => {
   return {
     ...store,
     toggleFavorite: (pokemon: PokeDexPokemonType) => {
+      console.log('pokemon', pokemon);
       const isFavorited =
         store.currentTrainer?.favoritePokemons?.some(
           (pok) => pok.id === pokemon.id,
         ) || false;
+      console.log('isFavorited:', isFavorited);
       if (isFavorited) {
         store.removeFromFavorites(pokemon);
       } else {

@@ -63,7 +63,7 @@ export const useMainAppStore = create<MainAppStore>()(
           if (!state.currentTrainer) return state;
           const updatedCurrentTrainer = {
             ...state.currentTrainer,
-            favoritePokemonIds: state.currentTrainer.favoritePokemons.filter(
+            favoritePokemons: state.currentTrainer.favoritePokemons.filter(
               (poke: PokeDexPokemonType) => poke.id !== pokemon.id,
             ),
           };
