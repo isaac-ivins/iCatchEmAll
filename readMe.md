@@ -25,6 +25,14 @@ Upon launching the app, you can:
 - **Expo CLI** - Development tools
 - **iOS Simulator** (macOS) or **Android Studio** - Device emulation
 
+### **Environment Setup Links**
+- https://reactnative.dev/docs/running-on-device
+- https://reactnative.dev/docs/set-up-your-environment
+
+### **PokeAPI Links**
+- **API Docs** - https://pokeapi.co/docs/graphql#v1beta2
+- **GraphQL Console** - https://graphql.pokeapi.co/v1beta2/console
+
 ### **Quick Setup**
 ```bash
 # Clone the repository
@@ -92,6 +100,7 @@ The project uses **Husky** for automated quality checks before pushing:
 ### **Data Fetching & API**
 - **Apollo Client** (3.13.8) - GraphQL client for API
 - **GraphQL** (16.11.0) - Query language
+- **PokeAPI** - https://graphql.pokeapi.co/v1beta2/console
 
 ### **Development Tools**
 - **TypeScript** (~5.8.3)
