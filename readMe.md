@@ -106,33 +106,4 @@ The project uses **Husky** for automated quality checks before pushing:
 
 ---
 
-## 🎯 Features
-
-- 🎮 **Pokemon Trainer Management** - Create and manage multiple trainers
-- 🔍 **PokeDex Browsing** - Search and explore Pokemon by region
-- ⭐ **Favorite System** - Capture and favorite your preferred Pokemon
-- 📱 **Cross-Platform** - Works on both iOS and Android
-- 🎨 **Modern UI** - Clean, intuitive interface
-- 💾 **Local Storage** - Data persists between sessions
-- 🧪 **Comprehensive Testing** - Full test coverage
-- 🔧 **Quality Assurance** - Automated linting and formatting
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is part of the LiveFront Challenge. All rights reserved.
-
----
-
-**Happy Pokemon hunting! 🎮✨**
+**Happy Pokemon hunting!**
