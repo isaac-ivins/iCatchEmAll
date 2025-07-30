@@ -28,6 +28,35 @@ export default [
     },
   },
   {
+    files: [
+      '**/*.test.ts',
+      '**/*.test.tsx',
+      '**/__tests__/**/*',
+      'jest.setup.js',
+    ],
+    languageOptions: {
+      globals: {
+        jest: 'readonly',
+        describe: 'readonly',
+        test: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        require: 'readonly',
+        global: 'readonly',
+        console: 'readonly',
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
     plugins: { react },
     rules: {
       ...react.configs.recommended.rules,

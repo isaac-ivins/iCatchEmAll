@@ -9,6 +9,7 @@
       "@hooks/*": ["hooks/*"],
       "@navigation/*": ["navigation/*"],
       "@screens/*": ["screens/*"]
-    }
+    },
+    "types": ["jest", "node"]
   }
 }
