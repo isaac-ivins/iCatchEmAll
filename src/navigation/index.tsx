@@ -7,9 +7,11 @@ import { LightTheme } from '@constants/theme';
 
 const NavigationStack = createNativeStackNavigator<NavigationParamList>();
 
+// place for token validation / refreshing
+// App State Listeners usually go here too
+// Can attach a DevToolsNavigator here as well
 const Navigation: FC = () => {
-  // impliment dark mode with theme toggle
-  console.log('LightTheme: ', LightTheme);
+  // to-do: impliment dark mode with theme toggle
   return (
     <NavigationContainer theme={LightTheme}>
       <NavigationStack.Navigator

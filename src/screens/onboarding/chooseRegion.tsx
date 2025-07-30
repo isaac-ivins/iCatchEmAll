@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState, useCallback } from 'react';
 import {
   FlatList,
   StyleSheet,
@@ -26,11 +26,13 @@ import {
   RootParamList,
   RootParamScreens,
 } from 'types/nav';
-import { useMainAppStore } from '../../store/main';
+import { useMainAppStore } from 'store/main';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-// "Go back" -> ChooseTrainerName
-// "Complete" CTA -> AuthStackNav
+// Final Onboarding Screen (2/2)
+// CTA -> navigates to BottomTabNavigator ( Pokedex initial Screen )
+// Trainer Created in Main Store
+// currentTrainer set in Main Store
 const ChooseTrainerRegionScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -46,7 +48,11 @@ const ChooseTrainerRegionScreen: FC = () => {
     >();
   const { createTrainer, setCurrentTrainer } = useMainAppStore();
 
-  const onSubmitHandler = () => {
+  const handleGenerationSelect = useCallback((generationName: string) => {
+    setSelectedGen(generationName === selectedGen ? null : generationName);
+  }, [selectedGen]);
+
+  const onSubmitHandler = useCallback(() => {
     if (selectedGen && route.params.name) {
       const newTrainer = {
         name: route.params.name,
@@ -61,7 +67,6 @@ const ChooseTrainerRegionScreen: FC = () => {
       };
 
       createTrainer(newTrainer);
-
       setCurrentTrainer(currentTrainer);
 
       navigation.dispatch(
@@ -73,7 +78,49 @@ const ChooseTrainerRegionScreen: FC = () => {
     } else {
       Alert.alert('Whoops', 'Ensure the Name and Generation are set/selected');
     }
-  };
+  }, [selectedGen]);
+
+  // another cool renderItem in a callback
+  // would create reusable component but only used once
+  const renderGenerationItem = useCallback(({ item }: { item: PokeDexGeneration }) => {
+    const isSelected: boolean = item.name === selectedGen;
+    return (
+      <TouchableOpacity
+        onPress={() => handleGenerationSelect(item.name)}
+        style={styles.cellWrapper}
+      >
+        <View
+          style={[
+            styles.cellContainer,
+            isSelected && {
+              borderColor: theme.colors.primary,
+              borderWidth: 2,
+            },
+          ]}
+        >
+          <RNText
+            customStyles={
+              isSelected ? { color: theme.colors.primary } : undefined
+            }
+            type={RNTextEnum.p1}
+          >
+            Title: {item.name}
+          </RNText>
+          <RNText
+            customStyles={
+              isSelected ? { color: theme.colors.primary } : undefined
+            }
+            type={RNTextEnum.p1}
+          >
+            Total: {item.pokemon_species.aggregate.count}
+          </RNText>
+        </View>
+      </TouchableOpacity>
+    );
+  }, [selectedGen]);
+
+  // theoretical performance optimization
+  const keyExtractor = useCallback((item: PokeDexGeneration) => item.name, []);
 
   return (
     <View style={styles.container}>
@@ -84,50 +131,13 @@ const ChooseTrainerRegionScreen: FC = () => {
         numColumns={2}
         data={data?.generations ?? []}
         extraData={selectedGen}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => {
-          const isSelected: boolean = item.name === selectedGen;
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                setSelectedGen(item.name === selectedGen ? null : item.name)
-              }
-              style={styles.cellWrapper}
-            >
-              <View
-                style={[
-                  styles.cellContainer,
-                  isSelected && {
-                    borderColor: theme.colors.primary,
-                    borderWidth: 2,
-                  },
-                ]}
-              >
-                <RNText
-                  customStyles={
-                    isSelected ? { color: theme.colors.primary } : undefined
-                  }
-                  type={RNTextEnum.p1}
-                >
-                  Title: {item.name}
-                </RNText>
-                <RNText
-                  customStyles={
-                    isSelected ? { color: theme.colors.primary } : undefined
-                  }
-                  type={RNTextEnum.p1}
-                >
-                  Total: {item.pokemon_species.aggregate.count}
-                </RNText>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
+        keyExtractor={keyExtractor}
+        renderItem={renderGenerationItem}
       />
       <RNButton
         style={styles.btn}
         disabled={!selectedGen}
-        title={'Pick Generation'}
+        title={'Start Catching!'}
         onPress={onSubmitHandler}
       />
     </View>

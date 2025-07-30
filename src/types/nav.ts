@@ -1,3 +1,6 @@
+// Type Checking the navigator is borderline mandatory if you're not using file based routing
+// - I am not using file based routing
+
 export type NavigationParamList = {
   [NavigationScreens.RootStackNavigator]: undefined;
 };

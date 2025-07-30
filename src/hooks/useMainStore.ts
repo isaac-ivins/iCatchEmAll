@@ -1,6 +1,8 @@
 import { useMainAppStore } from 'store/main';
 import { PokeDexPokemonType } from 'types/graphql';
 
+// This hook gets used to refference methods from the main store
+// toggleFavorite is called on the PokemonDetailsModal ( for now )
 export const useTrainers = () => {
   const store = useMainAppStore();
   return {

@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import {
   CommonActions,
@@ -15,7 +15,9 @@ import { useMainAppStore } from 'store/main';
 import { TrainerWithFavorites } from 'types/store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// "Create account/trainer" CTA -> onboarding
+// Initial App Screen
+// Create Trainer CTA -> begins the Onboarding Flow ( 2 screens )
+// Lists existing trainers from Zustand Store ( Main Store )
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -23,15 +25,12 @@ const WelcomeScreen: FC = () => {
   const trainers = useMainAppStore((state) => state.trainers);
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
-  // handle create trainer
-  const onPressCreateTrainerHandler = () => {
+  const onPressCreateTrainerHandler = useCallback(() => {
     navigation.navigate(RootParamScreens.OnboardingStackNavigator);
-  };
+  }, []);
 
-  // handle login w/ trainer
-  const onPressLoginWithTrainerHandler = (trainer: TrainerWithFavorites) => {
+  const onPressLoginWithTrainerHandler = useCallback((trainer: TrainerWithFavorites) => {
     setCurrentTrainer(trainer);
-    navigation.navigate(RootParamScreens.OnboardingStackNavigator);
 
     navigation.dispatch(
       CommonActions.reset({
@@ -39,7 +38,27 @@ const WelcomeScreen: FC = () => {
         routes: [{ name: RootParamScreens.AuthenticatedStackNavigator }],
       }),
     );
-  };
+  }, []);
+
+  // Started to put these renderItems props into Callbacks recently
+  const renderTrainerItem = useCallback(({ item }: { item: TrainerWithFavorites }) => (
+    <TouchableOpacity
+      onPress={() => onPressLoginWithTrainerHandler(item)}
+      style={styles.cellWrapper}
+    >
+      <View style={styles.cellContainer}>
+        <RNText
+          type={RNTextEnum.p1}
+          customStyles={styles.centerText}
+        >
+          {item.name} - {item.region}
+        </RNText>
+      </View>
+    </TouchableOpacity>
+  ), []);
+
+  // theoretical performance optimization
+  const keyExtractor = useCallback((item: TrainerWithFavorites) => item.id, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,24 +87,8 @@ const WelcomeScreen: FC = () => {
           </RNText>
           <FlatList<TrainerWithFavorites>
             data={trainers}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => onPressLoginWithTrainerHandler(item)}
-                  style={styles.cellWrapper}
-                >
-                  <View style={styles.cellContainer}>
-                    <RNText
-                      type={RNTextEnum.p1}
-                      customStyles={styles.centerText}
-                    >
-                      {item.name} - {item.region}
-                    </RNText>
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
+            keyExtractor={keyExtractor}
+            renderItem={renderTrainerItem}
           />
         </View>
       )}
@@ -134,4 +137,3 @@ const createStyles = ({ layout, colors }: ExtendedTheme) => {
     },
   });
 };
-// test comment

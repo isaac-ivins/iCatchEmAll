@@ -4,15 +4,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UnauthenticatedStackNavigator from '@navigation/navigators/unauthenticated';
 import OnboardingStackNavigator from '@navigation/navigators/onboarding';
 import AuthenticatedNavigationStack from '@navigation/navigators/authenticated';
-import { useMainAppStore } from '../../store/main';
+import { useMainAppStore } from 'store/main';
 
 const RootNavigationStack = createNativeStackNavigator<RootParamList>();
 
+// Again not much going on here
+// Dynamically setting the initial route based on the currentTrainer
+// - persists through App Launch but not termination ( for now )
 const RootStackNavigator: FC = () => {
   const currentTrainer = useMainAppStore((state) => state.currentTrainer);
   const isAuthenticated = !!currentTrainer;
-
-  // todo - token validation (currentTrainer existing is the current check)
 
   return (
     <RootNavigationStack.Navigator

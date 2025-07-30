@@ -21,6 +21,10 @@ interface PokemonListProps extends ScrollViewProps {
   onRefresh?: () => void;
 }
 
+// FlatList of pokemon from the PokeAPI
+// Displayed using Trainer Region on the Pokedex Tab
+// Displayed using Favorited Pokemon on the Captured Pokemon Tab
+// Using RefreshControl to refetch API
 const PokemonList: FC<PokemonListProps> = ({
   data,
   onPress,

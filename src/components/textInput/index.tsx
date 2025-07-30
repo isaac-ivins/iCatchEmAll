@@ -16,6 +16,10 @@ interface RNTextInputProps extends TextInputProps {
   style?: StyleProp<TextStyle>;
 }
 
+// Minimalist Reusable TextInput for main cases
+// Not attached to any current schema - would require updates
+// Not a TextArea substitute
+// Gets the job done and adds accessibility props automatically
 export const RNTextInput: FC<RNTextInputProps> = ({
   value,
   onChangeText,

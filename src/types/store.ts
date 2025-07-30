@@ -1,5 +1,4 @@
 import { PokeDexPokemonType } from './graphql';
-
 export interface TrainerType {
   name: string;
   region: string;

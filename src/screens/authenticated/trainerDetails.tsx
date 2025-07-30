@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   CommonActions,
@@ -13,46 +13,43 @@ import { useMainAppStore } from 'store/main';
 import { RootParamList, RootParamScreens } from 'types/nav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-// "Logout" CTA -> WelcomeScreen / UnauthStack
+// Final Tab in BottomTabNavigator ( 3/3 )
+// Logout CTA -> clears currentTrainer from Main Store & navigates to WelcomeScreen
 const TrainerDetailsScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const { setCurrentTrainer } = useMainAppStore();
-  const name = useMainAppStore((state) => state.currentTrainer?.name);
-  const region = useMainAppStore((state) => state.currentTrainer?.region);
-  const trainerFavorites = useMainAppStore(
-    (state) => state.currentTrainer?.favoritePokemons,
-  );
+  const currentTrainer = useMainAppStore((state) => state.currentTrainer);
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
-  const handleLogoutLogic = () => {
+  // Logout CTA -> Navigates to WelcomeScreen
+  const handleLogoutLogic = useCallback(() => {
     setCurrentTrainer(null);
-
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
         routes: [{ name: RootParamScreens.UnauthenticatedStackNavigator }],
       }),
     );
-  };
+  }, [setCurrentTrainer, navigation]);
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <RNText type={RNTextEnum.h2} customStyles={styles.font}>
-          {name}
+          {currentTrainer?.name}
         </RNText>
         <RNText
           type={RNTextEnum.h2}
           customStyles={[styles.font, styles.margin]}
         >
-          {region}
+          {currentTrainer?.region}
         </RNText>
         <RNText
           type={RNTextEnum.h2}
           customStyles={[styles.font, styles.margin]}
         >
-          Pokemon Caught: {trainerFavorites?.length ?? '0'}
+          Pokemon Caught: {currentTrainer?.favoritePokemons?.length ?? '0'}
         </RNText>
       </View>
       <RNButton title={'Logout'} onPress={handleLogoutLogic} />

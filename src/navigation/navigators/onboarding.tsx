@@ -7,6 +7,7 @@ import ChooseTrainerRegionScreen from '@screens/onboarding/chooseRegion';
 const OnboardingNavigationStack =
   createNativeStackNavigator<OnboardingParamList>();
 
+// Not a lot going on here
 const OnboardingStackNavigator: FC = () => {
   return (
     <OnboardingNavigationStack.Navigator

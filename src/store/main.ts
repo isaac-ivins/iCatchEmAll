@@ -8,6 +8,10 @@ import {
 } from '../types/store';
 import { PokeDexPokemonType } from 'types/graphql';
 
+// Main Store for the App - Persists to AsyncStorage
+// Handles all Trainer (stores favorited Pokemon data )
+// General CRUD operations for Trainers
+// uses currentTrainer to check for "login"
 export const useMainAppStore = create<MainAppStore>()(
   persist(
     (set) => ({

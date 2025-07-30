@@ -17,6 +17,9 @@ const AuthenticatedBottomTabs =
 const AuthenticatedNavigationStack =
   createNativeStackNavigator<AuthenticatedStackNavigatorParamList>();
 
+// Bottom Tab Navigator
+// Sits alongside the PokemonDetialsModal
+// If grown - these screens become nested Navigators as well
 const AuthenticatedBottomTabNavigator: FC = () => {
   return (
     <AuthenticatedBottomTabs.Navigator
@@ -38,6 +41,8 @@ const AuthenticatedBottomTabNavigator: FC = () => {
   );
 };
 
+// Demonstrating some nested navigators
+// Not using "Groups" because I've never used those and everything works without them
 const AuthenticatedStackNavigator: FC = () => {
   return (
     <AuthenticatedNavigationStack.Navigator>

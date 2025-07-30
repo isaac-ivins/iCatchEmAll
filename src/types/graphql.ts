@@ -1,3 +1,4 @@
+// GraphQL Types accociated to the PokeDex API
 export interface PokeDexGeneration {
   name: string;
   region_id: number;

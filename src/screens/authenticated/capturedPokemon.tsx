@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import {
   ExtendedTheme,
@@ -14,7 +14,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import PokemonList from 'components/pokemonList';
 import { PokeDexPokemonType } from 'types/graphql';
 
-// Open Details Modal with CTA on Pokemon Tile
+// Second Tab in BottomTabNavigator ( 2/3 )
+// Displays Pokemon that have been "Caught" by the Trainer
+// Pokemon Details Modal is shown on Pokemon Tile CTA
 const CapturedPokemonScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -23,21 +25,24 @@ const CapturedPokemonScreen: FC = () => {
     useNavigation<
       NativeStackNavigationProp<AuthenticatedStackNavigatorParamList>
     >();
+  const capturedPokemon = useMemo(() => 
+    currentTrainer?.favoritePokemons ?? [], 
+    [currentTrainer?.favoritePokemons]
+  );
 
-  // handle Open Details Modal
-  const onPressOpenDetailsModalHandler = (pokemon: PokeDexPokemonType) => {
+  const onPressOpenDetailsModalHandler = useCallback((pokemon: PokeDexPokemonType) => {
     navigation.navigate(
       AuthenticatedStackNavigatorScreens.PokemonDetailsModal,
       {
         pokemonId: pokemon.id,
       },
     );
-  };
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <PokemonList
-        data={currentTrainer?.favoritePokemons ?? []}
+        data={capturedPokemon}
         onPress={onPressOpenDetailsModalHandler}
       />
     </SafeAreaView>

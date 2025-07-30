@@ -1,5 +1,5 @@
-import { FC, useEffect, useLayoutEffect, useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FC, useEffect, useLayoutEffect, useMemo, useCallback } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
 import {
   ExtendedTheme,
   RouteProp,
@@ -18,7 +18,10 @@ import RNButton, { ButtonType } from 'components/button';
 import { useTrainers } from '@hooks/useMainStore';
 import { useMainAppStore } from 'store/main';
 
-// Close Details Modal with X
+// Modal shown within AuthenticatedStackNavigator - Bottom Tabs
+// Only place a user can "Catch" a Pokemon
+// Does not close out automatically - requires pulldown swipe at the moment
+// Todo: add more info / update query
 const PokemonDetailsModal: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -31,18 +34,19 @@ const PokemonDetailsModal: FC = () => {
         AuthenticatedStackNavigatorScreens.PokemonDetailsModal
       >
     >();
-  const [runLazyGetPokemonDetailsByPokemonIdQuery, { data, loading, error }] =
+  const [runLazyGetPokemonDetailsByPokemonIdQuery, { data, error }] =
     useLazyQuery(GET_POKEMON_DETAILS_BY_POKEMON_ID, {
       fetchPolicy: 'no-cache',
       notifyOnNetworkStatusChange: true,
     });
   const { pokemonId } = route.params;
-  const isCaught = currentTrainer?.favoritePokemons?.some(
-    (pok) => pok.id === pokemonId,
+  const isCaught = useMemo(() => 
+    currentTrainer?.favoritePokemons?.some((pok) => pok.id === pokemonId) ?? false,
+    [currentTrainer?.favoritePokemons, pokemonId]
   );
+  const pokemonDetails = useMemo(() => data?.details?.[0], [data?.details]);
 
-  // query for more pokemon details
-  // display more info
+  // run lazy query on mount
   useLayoutEffect(() => {
     runLazyGetPokemonDetailsByPokemonIdQuery({
       variables: {
@@ -54,28 +58,29 @@ const PokemonDetailsModal: FC = () => {
   // lazy query error handling
   useEffect(() => {
     if (error) {
-      console.log('error: ', error);
+      Alert.alert('Error', 'Failed to fetch pokemon details');
     }
-  }, [error, loading]);
+  }, [error]);
 
-  const onPressToggleFavoriteHandler = () => {
-    console.log('data?.details[0].name: ', data?.details[0].name);
-    toggleFavorite({ name: data?.details[0].name, id: pokemonId });
-  };
+  const onPressToggleFavoriteHandler = useCallback(() => {
+    if (pokemonDetails?.name) {
+      toggleFavorite({ name: pokemonDetails.name, id: pokemonId });
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
       <RNText type={RNTextEnum.h2} customStyles={styles.font}>
-        Name: {data?.details[0].name}
+        Name: {pokemonDetails?.name}
       </RNText>
       <RNText type={RNTextEnum.h3} customStyles={styles.font}>
-        Height: {data?.details[0]?.height} m
+        Height: {pokemonDetails?.height} m
       </RNText>
       <RNText type={RNTextEnum.h3} customStyles={styles.font}>
-        Weidht: {data?.details[0]?.weight} kg
+        Weight: {pokemonDetails?.weight} kg
       </RNText>
       <RNText type={RNTextEnum.h3} customStyles={styles.font}>
-        Base Experience: {data?.details[0]?.base_experience}
+        Base Experience: {pokemonDetails?.base_experience}
       </RNText>
       <RNButton
         type={isCaught ? ButtonType.Secondary : ButtonType.Primary}

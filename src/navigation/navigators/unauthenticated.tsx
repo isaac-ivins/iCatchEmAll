@@ -5,6 +5,7 @@ import WelcomeScreen from '@screens/unauthenticated/welcome';
 const UnauthenticatedNavigationStack =
   createNativeStackNavigator<UnauthenticatedParamList>();
 
+// Not a lot going on here
 const UnauthenticatedStackNavigator = () => {
   return (
     <UnauthenticatedNavigationStack.Navigator

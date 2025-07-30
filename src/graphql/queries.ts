@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+// Query to get all Pokemon Generations
+// Used within Onboarding - see PokeDexGeneration
 export const GET_ALL_GENERATIONS = gql`
   query getAllGenerations {
     generations: generation {
@@ -13,6 +15,8 @@ export const GET_ALL_GENERATIONS = gql`
   }
 `;
 
+// Query to get all Pokemon by Generation Name
+// Used on Pokedex Screen - see PokeDexPokemonType
 export const GET_ALL_POKEMON_BY_GENERATION_NAME = gql`
   query getAllPokemonByGenerationName($genName: String!) {
     pokemon: pokemonspecies(
@@ -25,6 +29,8 @@ export const GET_ALL_POKEMON_BY_GENERATION_NAME = gql`
   }
 `;
 
+// Query to get Pokemon Details by Pokemon ID
+// Used on PokemonDetailsModal - see PokeDexPokemonType
 export const GET_POKEMON_DETAILS_BY_POKEMON_ID = gql`
   query getPokemonDetailsByPokemonId($pokeId: Int!) {
     details: pokemon(where: { id: { _eq: $pokeId } }) {

@@ -26,6 +26,10 @@ interface ButtonProps {
   accessibilityLabel?: string;
 }
 
+// Used for main Button cases - not every CTA or Pressable use case
+// Has 2 types but is expandable given DesignTokens
+// Automatically adding accessibility props
+// Text within the Button is still customizable
 const RNButton: React.FC<ButtonProps> = ({
   title,
   onPress,

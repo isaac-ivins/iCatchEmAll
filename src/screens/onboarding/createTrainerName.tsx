@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   ExtendedTheme,
@@ -12,8 +12,9 @@ import { OnboardingParamList, OnboardingScreens } from 'types/nav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RNTextInput } from 'components/textInput';
 
-// "Go Back / Close" -> onboarding
-// "Choose Region" CTA -> ChooseRegionScreen
+// Initial Onboarding Screen (1/2)
+// Continue CTA -> navigates to ChooseRegionScreen (2/2 screens)
+// Sub-Minimal Input Validation 
 const CreateTrainerNameScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -22,11 +23,19 @@ const CreateTrainerNameScreen: FC = () => {
   const [name, setName] = useState<string>('');
 
   // navigate to ChooseTrainerRegionScreen w/ input value
-  const onPressHandler = () => {
+  const onPressHandler = useCallback(() => {
     navigation.navigate(OnboardingScreens.ChooseTrainerRegionScreen, {
       name: name,
     });
-  };
+  }, [name]);
+
+  const handleNameChange = useCallback((val: string) => {
+    setName(val);
+  }, []);
+
+  const onPressGoBack = useCallback(() => {
+    navigation.goBack();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -38,20 +47,20 @@ const CreateTrainerNameScreen: FC = () => {
       </RNText>
       <RNTextInput
         value={name}
-        onChangeText={(val: string) => setName(val)}
+        onChangeText={handleNameChange}
         maxLength={25}
         placeholder="Enter trainer name"
         style={styles.input}
       />
       <RNButton
         disabled={name.length < 1}
-        title={'Pick Generation'}
+        title={'Continue'}
         onPress={onPressHandler}
       />
       <RNButton
         type={ButtonType.Secondary}
         title={'Leave'}
-        onPress={() => navigation.goBack()}
+        onPress={onPressGoBack}
       />
     </View>
   );

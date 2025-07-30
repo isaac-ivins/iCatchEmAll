@@ -24,7 +24,10 @@ import {
 } from 'types/nav';
 import PokemonList from 'components/pokemonList';
 
-// Open Details Modal with CTA on Pokemon Tile
+// Initial Tab in BottomTabNavigator ( 1/3 )
+// Displays Pokemon by Generation ( Region )
+// Pokemon Details Modal is shown on Pokemon Tile CTA
+// Pokemon List is refreshed on pull-to-refresh
 const PokedexScreen: FC = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -36,22 +39,24 @@ const PokedexScreen: FC = () => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [
     runLazyGetAllPokemonByGenerationNameQuery,
-    { data, loading, refetch, error },
+    { data, refetch, error },
   ] = useLazyQuery(GET_ALL_POKEMON_BY_GENERATION_NAME, {
     fetchPolicy: 'no-cache',
     notifyOnNetworkStatusChange: true,
   });
+  const pokemonData = useMemo(() => data?.pokemon ?? [], [data?.pokemon]);
 
-  // inital mount - run lazy query
+  // initial mount - run lazy query
   useLayoutEffect(() => {
-    runLazyGetAllPokemonByGenerationNameQuery({
-      variables: {
-        genName: currentTrainer?.region,
-      },
-    });
-  }, []);
+    if (currentTrainer?.region) {
+      runLazyGetAllPokemonByGenerationNameQuery({
+        variables: {
+          genName: currentTrainer.region,
+        },
+      });
+    }
+  }, [currentTrainer?.region]);
 
-  // lazy query error handling
   useEffect(() => {
     if (error) {
       Alert.alert(
@@ -59,29 +64,32 @@ const PokedexScreen: FC = () => {
         'There was an issue with our network request. Try again Soon. :/',
       );
     }
-  }, [error, loading]);
+  }, [error]);
 
-  // refresh control -> refetch
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    await refetch();
-    setRefreshing(false);
-  }, []);
+    try {
+      await refetch();
+    } catch {
+      Alert.alert('Error', 'Failed to refresh Pokemon data');
+    } finally {
+      setRefreshing(false);
+    }
+  }, [refetch]);
 
-  // Navigates to PokemonDetailsModal
-  const onPressOpenDetailsModalHandler = (pokemon: PokeDexPokemonType) => {
+  const onPressOpenDetailsModalHandler = useCallback((pokemon: PokeDexPokemonType) => {
     navigation.navigate(
       AuthenticatedStackNavigatorScreens.PokemonDetailsModal,
       {
         pokemonId: pokemon.id,
       },
     );
-  };
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <PokemonList
-        data={data?.pokemon ?? []}
+        data={pokemonData}
         onPress={onPressOpenDetailsModalHandler}
         refreshing={refreshing}
         onRefresh={onRefresh}
