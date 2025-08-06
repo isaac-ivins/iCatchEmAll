@@ -16,8 +16,8 @@ interface RNTextProps extends TextProps {
 }
 
 // Minimalist Reusable Text Component for all static copy cases
-// Currently aligned with DesignTokening system
-// There's like 3 headings and 2 paragraph styles atm - this would grow
+// Maps typography from tokens wihin custom theme
+// There's like 3 headings and 2 paragraph atm - this would grow
 // I don't like adding margins/padding here - set when used
 const RNText: FC<RNTextProps> = ({
   type,
